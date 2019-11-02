@@ -22,30 +22,35 @@ public class ProjectMemberDao {
         this.dataSource = dataSource;
     }
 
-    public void insertMember(String memberName, String memberMail) throws SQLException {
+    public void insertMember(ProjectMember member) throws SQLException {
 
         try (Connection conn = dataSource.getConnection();) {
             PreparedStatement statement = conn.prepareStatement(
                     "insert into projectmembers (name, email) values (? , ?)");
-            statement.setString(1, memberName);
-            statement.setString(2, memberMail);
+            statement.setString(1, member.getName());
+            statement.setString(2, member.getMail());
             statement.executeUpdate();
         }
 
     }
 
-    public List<String> listAll() throws SQLException {
+    public List<ProjectMember> listAll() throws SQLException {
+
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
                     "select * from projectmembers"
             )) {
                 try (ResultSet resultSet = statement.executeQuery()) {
-                    List<String> result = new ArrayList<>();
+                    List<ProjectMember> result = new ArrayList<>();
+                    ProjectMember projectMember;
 
                     while (resultSet.next()) {
-                        result.add(resultSet.getString("name"));
-                        result.add(resultSet.getString("email"));
+
+                      result.add(projectMember = new ProjectMember(resultSet.getString("name"), resultSet.getString("email")));
+
+
                     }
+
                     return result;
                 }
             }
@@ -68,11 +73,11 @@ public class ProjectMemberDao {
 
         PGSimpleDataSource dataSource= new PGSimpleDataSource();
         dataSource.setURL(properties.getProperty("dataSource.url"));
-        dataSource.setUser(properties.getProperty("dataSource.User"));
+        dataSource.setUser(properties.getProperty("dataSource.username"));
         dataSource.setPassword(properties.getProperty("dataSource.password"));
         Flyway.configure().dataSource(dataSource).load().migrate();
         ProjectMemberDao memberDao = new ProjectMemberDao(dataSource);
-        memberDao.insertMember(projectName,projectMail);
+        memberDao.insertMember(new ProjectMember(projectName, projectMail));
 
         System.out.println(memberDao.listAll());
     }
