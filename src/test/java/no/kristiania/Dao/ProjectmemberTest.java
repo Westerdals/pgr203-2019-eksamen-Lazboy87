@@ -28,6 +28,7 @@ void testDataSource() {
     void shouldFindSavedOrders() throws SQLException{
         ProjectMember member = new ProjectMember();
         member.setName("Test");
+        member.setMail("test@test");
         ProjectMemberDao dao = new ProjectMemberDao(jdbcDataSource);
 
 

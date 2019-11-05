@@ -21,18 +21,20 @@ public class ProjectMemberDao extends AbstractDao<ProjectMember> {
     @Override
     protected void insertMember(ProjectMember member, PreparedStatement statement) throws SQLException {
         statement.setString(1, member.getName());
+        statement.setString(2, member.getMail());
     }
 
     @Override
     protected ProjectMember readObject(ResultSet resultSet) throws SQLException {
         ProjectMember member = new ProjectMember();
         member.setName(resultSet.getString(1));
+        member.setMail(resultSet.getString(2));
         return member;
     }
 
 
     public void insert(ProjectMember projectMember) throws SQLException{
-        insert(projectMember, "insert into projectmembers (name) values (?)");
+        insert(projectMember, "insert into projectmembers (name,email) values (?,?)");
     }
 
     public List<ProjectMember> listAll() throws SQLException {
