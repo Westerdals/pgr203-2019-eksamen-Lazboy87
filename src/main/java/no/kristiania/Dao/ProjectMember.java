@@ -1,4 +1,4 @@
-package no.kristiania.DAO;
+package no.kristiania.Dao;
 
 import java.util.Objects;
 
