@@ -1,4 +1,6 @@
-package no.kristiania;
+package no.kristiania.DAO;
+
+
 
 import org.flywaydb.core.Flyway;
 import org.h2.jdbcx.JdbcDataSource;
@@ -20,8 +22,6 @@ void testDataSource() {
         jdbcDataSource = new JdbcDataSource();
         jdbcDataSource.setURL("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
         Flyway.configure().dataSource(jdbcDataSource).load().migrate();
-
-
     }
 
 
