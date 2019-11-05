@@ -2,11 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lasse og Fredrik sitt Project</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>KristianiaProject</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Lasse og Fredrik</h1>
-<img src="image.png" alt='Joke: How to write good code: Flowchart with arrows going around leading to throw it away and start over and cloud with question mark leading to "good code"' />
+<h1>Project view</h1>
+
+<div id="projectMembers"></div>
+
+<div>
+    <a href="newWorker.html">Add new project member</a>
+</div>
 </body>
+<script>
+    fetch("/projectMembers")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("projectMembers").innerHTML = text;
+    });
+</script>
 </html>
