@@ -25,12 +25,14 @@ public class ProjectMemberDao extends AbstractDao<ProjectMember> {
 
     @Override
     protected ProjectMember readObject(ResultSet resultSet) throws SQLException {
-        return null;
+        ProjectMember member = new ProjectMember();
+        member.setName(resultSet.getString(1));
+        return member;
     }
 
 
     public void insert(ProjectMember projectMember) throws SQLException{
-        insert(projectMember, "insert into orders (name) values (?)");
+        insert(projectMember, "insert into projectmembers (name) values (?)");
     }
 
     public List<ProjectMember> listAll() throws SQLException {
