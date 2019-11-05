@@ -24,7 +24,19 @@ void testDataSource() {
         Flyway.configure().dataSource(jdbcDataSource).load().migrate();
     }
 
+    @Test
+    void shouldFindSavedOrders() throws SQLException{
+        ProjectMember member = new ProjectMember();
+        member.setName("Test");
+        ProjectMemberDao dao = new ProjectMemberDao(jdbcDataSource);
 
+
+        dao.insert(member);
+        System.out.println(dao.listAll());
+        assertThat(dao.listAll()).contains(member);
+    }
+
+/*
     @Test
     void shouldRetriveProjectMemberNameH2() throws SQLException {
 
@@ -79,5 +91,5 @@ void testDataSource() {
 
         return strings[new Random().nextInt(strings.length)];
     }
-
+*/
 }
