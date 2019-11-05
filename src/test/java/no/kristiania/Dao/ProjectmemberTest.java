@@ -34,7 +34,7 @@ void testDataSource() {
 
         String memberName = pickOne(new String[]{"Per", "Knut", "Arne", "Johannes"});
         ProjectMember member = new ProjectMember(memberName, "");
-        dao.insertMember(member);
+        dao.insert(member);
         assertThat(dao.listAll()).contains(member);
         System.out.println(dao.listAll());
 
@@ -49,7 +49,7 @@ void testDataSource() {
 
         String memberMail = pickOne(new String[]{"Per@kristiania.no", "Knut@kristiania.no", "Arne@kristiania.no", "Johannes@kristiania.no"});
         ProjectMember member = new ProjectMember("", memberMail);
-        dao.insertMember(member);
+        dao.insert(member);
         assertThat(dao.listAll()).contains(member);
         System.out.println(dao.listAll());
 
@@ -68,7 +68,7 @@ void testDataSource() {
         String memberMail = memberName + "@kristiania.no";
 
         ProjectMember member = new ProjectMember(memberName, memberMail);
-        dao.insertMember(member);
+        dao.insert(member);
         assertThat(dao.listAll()).contains(member);
         System.out.println(dao.listAll());
 
