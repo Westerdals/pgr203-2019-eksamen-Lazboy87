@@ -3,6 +3,20 @@ package no.kristiania.Dao;
 import java.util.Objects;
 
 public class ProjectMember {
+    public static int getId() {
+        return id;
+    }
+
+    private static int id = 0;
+
+    public static void setId(){
+         id = 1;
+         if (ProjectMember.id == ProjectMember.getId()){
+         id++;}
+    }
+
+
+
     public String getName() {
         return name;
     }
@@ -23,12 +37,14 @@ public class ProjectMember {
     private String mail;
 
     public ProjectMember() {
+        setId();
 
     }
 
     public ProjectMember(String name, String mail) {
         this.name = name;
         this.mail = mail;
+
     }
 
 

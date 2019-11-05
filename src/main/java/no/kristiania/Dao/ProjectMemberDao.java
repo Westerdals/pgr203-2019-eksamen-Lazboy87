@@ -44,10 +44,10 @@ public class ProjectMemberDao extends AbstractDao<ProjectMember> {
 
     public static void main(String[] args) throws SQLException, IOException {
         System.out.println("enter a member name to insert: ");
-        String projectName = new Scanner(System.in).nextLine();
+        String inputName = new Scanner(System.in).nextLine();
 
-        System.out.println("enter a email to "+projectName +": ");
-        String projectMail = new Scanner(System.in).nextLine();
+        System.out.println("enter a email to "+inputName +": ");
+        String inputMail = new Scanner(System.in).nextLine();
 
         Properties properties = new Properties();
         properties.load(new FileReader("task-manager.properties"));
@@ -56,10 +56,15 @@ public class ProjectMemberDao extends AbstractDao<ProjectMember> {
         dataSource.setURL(properties.getProperty("dataSource.url"));
         dataSource.setUser(properties.getProperty("dataSource.username"));
         dataSource.setPassword(properties.getProperty("dataSource.password"));
-        Flyway.configure().dataSource(dataSource).load().migrate();
-        ProjectMemberDao memberDao = new ProjectMemberDao(dataSource);
-        memberDao.insert(new ProjectMember(projectName, projectMail));
 
+        Flyway.configure().dataSource(dataSource).load().migrate();
+
+        ProjectMemberDao memberDao = new ProjectMemberDao(dataSource);
+
+       ProjectMember member = new ProjectMember();
+       member.setName(inputName);
+        member.setMail(inputMail);
+      memberDao.insert(member);
         System.out.println(memberDao.listAll());
     }
 }

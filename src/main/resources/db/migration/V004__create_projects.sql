@@ -1,7 +1,14 @@
-create table if not exists status
+
+
+
+
+
+
+
+create table if not exists projects
 (
     project_id int
-        constraint status_pk
+        constraint projects_pk
             primary key,
     project_name varchar(100)
 );

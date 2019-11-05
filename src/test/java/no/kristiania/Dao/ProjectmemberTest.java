@@ -37,6 +37,18 @@ void testDataSource() {
         assertThat(dao.listAll()).contains(member);
     }
 
+
+    @Test
+    void shouldFindIDofMEMBERs() throws SQLException{
+        ProjectMember member1 = new ProjectMember();
+        ProjectMember member2 = new ProjectMember();
+        ProjectMember member3 = new ProjectMember();
+
+        System.out.println(member1.getId());
+        System.out.println(member2.getId());
+        System.out.println(member3.getId());
+    }
+
 /*
     @Test
     void shouldRetriveProjectMemberNameH2() throws SQLException {
