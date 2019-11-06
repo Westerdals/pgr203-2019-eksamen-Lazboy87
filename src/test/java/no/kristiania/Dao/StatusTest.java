@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-class StatusDaoTest {
+class StatusTest {
 
     private JdbcDataSource jdbcDataSource;
 

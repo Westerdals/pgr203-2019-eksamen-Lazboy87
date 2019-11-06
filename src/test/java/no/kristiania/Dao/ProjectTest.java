@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-class ProjectDaoTest {
+class ProjectTest {
     private JdbcDataSource jdbcDataSource;
 
 
