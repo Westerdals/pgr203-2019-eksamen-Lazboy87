@@ -41,6 +41,12 @@ class StatusDaoTest {
 
       StatusDao dao = new StatusDao(jdbcDataSource);
 
+        dao.insert(status);
+        dao.insert(status);
+
+
+        System.out.println(dao.listAll());
+
 
         List<Status> listOfStatus = dao.listAll();
 
