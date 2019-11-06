@@ -5,10 +5,21 @@ import java.util.Objects;
 public class Task {
     public Task(){
 
+
     }
 
     private String taskName;
-    private int statusId;
+
+    public int getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
+    }
+
+    private int taskId;
+    private int statusId= 1;
 
 
     public String getTaskName() {

@@ -14,8 +14,8 @@ public class ProjectDao extends AbstractDao<Project>{
 
     @Override
     protected void insertMember(Project project, PreparedStatement statement) throws SQLException {
-        statement.setString(2, project.getProjectname());
-        statement.setInt(1,project.getid());
+        statement.setString(1, project.getProjectname());
+
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ProjectDao extends AbstractDao<Project>{
 
 
     public void insert(Project project) throws SQLException{
-        insert(project, "insert into projects (project_id,project_name) values (?,?)");
+        insert(project, "insert into projects (project_name) values (?)");
     }
 
     public List<Project> listAll() throws SQLException {

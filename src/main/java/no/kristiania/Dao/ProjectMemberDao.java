@@ -23,6 +23,7 @@ public class ProjectMemberDao extends AbstractDao<ProjectMember> {
     protected void insertMember(ProjectMember member, PreparedStatement statement) throws SQLException {
         statement.setString(1, member.getName());
         statement.setString(2, member.getMail());
+
     }
 
     @Override

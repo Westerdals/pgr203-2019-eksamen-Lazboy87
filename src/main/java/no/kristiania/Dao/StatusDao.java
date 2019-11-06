@@ -14,8 +14,8 @@ public class StatusDao extends AbstractDao<Status>{
     @Override
     protected void insertMember(Status status, PreparedStatement statement) throws SQLException {
 
-        statement.setString(2, status.getStatusName());
-        statement.setInt(1,status.getStatusId());
+        statement.setString(1, status.getStatusName());
+
 
     }
 
@@ -23,12 +23,12 @@ public class StatusDao extends AbstractDao<Status>{
     protected Status readObject(ResultSet resultSet) throws SQLException {
         Status status = new Status();
         status.setStatusName(resultSet.getString(2));
-        status.setStatusId(Integer.parseInt(resultSet.getString(1)));
+        status.setStatusId(resultSet.getInt(1));
         return status;
     }
 
     public void insert(Status status) throws SQLException{
-        insert(status, "insert into status (status_id,status_cat) values (?,?)");
+        insert(status, "insert into status (status_cat) values (?)");
     }
 
     public List<Status> listAll() throws SQLException {

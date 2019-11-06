@@ -14,8 +14,9 @@ public class TaskDao extends AbstractDao<Task> {
 
     @Override
     protected void insertMember(Task task, PreparedStatement statement) throws SQLException {
-        statement.setString(2, task.getTaskName());
-        statement.setInt(1, task.getStatusId());
+        statement.setString(1, task.getTaskName());
+        statement.setInt(2, task.getStatusId());
+
     }
 
     @Override
@@ -24,11 +25,11 @@ public class TaskDao extends AbstractDao<Task> {
         Task task = new Task();
 
         task.setTaskName(resultSet.getString(2));
-        task.setStatusId(resultSet.getInt(1));
+        task.setTaskId(resultSet.getInt(1));
         return task;
     }
     public void insert(Task task) throws SQLException{
-        insert(task, "insert into tasks (task_id,task_name) values (?,?)");
+        insert(task, "insert into tasks (task_name,status_id) values (?,?)");
     }
 
 

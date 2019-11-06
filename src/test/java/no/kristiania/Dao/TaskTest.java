@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -22,15 +24,24 @@ public class TaskTest {
     }
 
     @Test
-    void shouldFindSavedOrders() throws SQLException {
+    void shouldFindDaoSIZEandid() throws SQLException {
         Task task = new Task();
         task.setTaskName("Finish Exam");
 
         TaskDao dao = new TaskDao(jdbcDataSource);
 
-
         dao.insert(task);
+        dao.insert(task);
+
+
         System.out.println(dao.listAll());
-        assertThat(dao.listAll()).contains(task);
+
+        List<Task> listOfTasks = dao.listAll();
+
+        assertThat(listOfTasks.size()).isEqualTo(2);
+        assertThat(listOfTasks.get(0).getTaskId()).isEqualTo(1);
+        assertThat(listOfTasks.get(1).getTaskId()).isEqualTo(2);
+
+
     }
 }

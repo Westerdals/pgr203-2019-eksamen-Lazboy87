@@ -24,7 +24,6 @@ class ProjectDaoTest {
     void shouldFindProjects() throws SQLException {
         Project project = new Project();
         project.setProjectname("Finish Exam");
-        project.setProjectid(2);
 
         ProjectDao dao = new ProjectDao(jdbcDataSource);
 
