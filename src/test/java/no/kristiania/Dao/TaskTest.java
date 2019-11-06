@@ -2,6 +2,7 @@ package no.kristiania.Dao;
 
 import org.flywaydb.core.Flyway;
 import org.h2.jdbcx.JdbcDataSource;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,15 @@ public class TaskTest {
     void testDataSource() {
         jdbcDataSource = new JdbcDataSource();
         jdbcDataSource.setURL("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
+        Flyway.configure().dataSource(jdbcDataSource).load().migrate();
+    }
+
+    @AfterEach
+    void teardown() {
+        jdbcDataSource = new JdbcDataSource();
+        jdbcDataSource.setURL("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
+
+        Flyway.configure().dataSource(jdbcDataSource).load().clean();
         Flyway.configure().dataSource(jdbcDataSource).load().migrate();
     }
 
