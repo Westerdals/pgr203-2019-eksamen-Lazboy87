@@ -5,53 +5,40 @@ package no.kristiania.Dao;
 import java.util.Objects;
 
 public class Status {
-
     private String StatusName;
-    private static int statusId = 0;
+    private  int statusId ;
 
-
-
-    public static int getId() {
-        return statusId;
+    public Status(String statusName, int statusId) {
+        StatusName = statusName;
+        this.statusId = statusId;
     }
 
-
-
-    public static void setStatusId(){
-        statusId = 1;
-        if (Project.projectId == Project.getId()){
-            statusId++;}
+    public Status() {
     }
-
 
     public String getStatusName() {
         return StatusName;
     }
 
     public void setStatusName(String statusName) {
-        this.StatusName = statusName;
+        StatusName = statusName;
     }
 
-
-    public Status() {
-        setStatusId();
+    public int getStatusId() {
+        return statusId;
     }
 
-    public Status(String statusName, int statusId) {
-        this.StatusName = statusName;
+    public void setStatusId(int statusId) {
         this.statusId = statusId;
-
     }
-
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Status that = (Status) o;
-        return Objects.equals(StatusName, that.StatusName) &&
-                Objects.equals(statusId, that.statusId);
+        Status status = (Status) o;
+        return statusId == status.statusId &&
+                Objects.equals(StatusName, status.StatusName);
     }
 
     @Override
@@ -61,9 +48,11 @@ public class Status {
 
     @Override
     public String toString() {
-        return "ProjectMember{" +
-                "name='" + StatusName + '\'' +
-                ", id='" + statusId + '\'' +
+        return "Status{" +
+                "StatusName='" + StatusName + '\'' +
+                ", statusId=" + statusId +
                 '}';
     }
 }
+
+

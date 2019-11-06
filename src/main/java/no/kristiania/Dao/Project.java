@@ -1,69 +1,53 @@
 package no.kristiania.Dao;
 
-
-
 import java.util.Objects;
 
 public class Project {
+    private String projectname;
+    private  int projectid;
 
-    private String projectName;
-    private static int projectId = 0;
+    public Project (){}
 
-
-
-    public static int getId() {
-     return projectId;
-}
-
-
-
-    public static void setProjectId(){
-        projectId = 1;
-        if (Project.projectId == Project.getId()){
-            projectId++;}
+    public Project(String name, Integer id) {
+        this.projectname = name;
+        this.projectid = id;
     }
 
-
-    public String getProjectName() {
-        return projectName;
+    public String getProjectname() {
+        return projectname;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public int getid() {
+        return projectid;
     }
 
-
-    public Project() {
-        setProjectId();
+    public void setProjectname(String projectname) {
+        this.projectname = projectname;
     }
 
-    public Project(String projectName, int projectId) {
-        this.projectName = projectName;
-        this.projectId = projectId;
-
+    public void setProjectid(int projectid) {
+        this.projectid = projectid;
     }
-
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Project that = (Project) o;
-        return Objects.equals(projectName, that.projectName) &&
-                Objects.equals(projectId, that.projectId);
+        Project project = (Project) o;
+        return projectid == project.projectid &&
+                Objects.equals(projectname, project.projectname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(projectName,projectId );
+        return Objects.hash(projectname, projectid);
     }
 
     @Override
     public String toString() {
-        return "ProjectMember{" +
-                "name='" + projectName + '\'' +
-                ", id='" + projectId + '\'' +
+        return "Project{" +
+                "projectname='" + projectname + '\'' +
+                ", projectid=" + projectid +
                 '}';
     }
 }
