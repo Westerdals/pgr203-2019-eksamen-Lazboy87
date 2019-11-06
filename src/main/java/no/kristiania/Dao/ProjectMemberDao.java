@@ -2,6 +2,7 @@ package no.kristiania.Dao;
 
 import org.flywaydb.core.Flyway;
 import org.postgresql.ds.PGSimpleDataSource;
+
 import javax.sql.DataSource;
 import java.io.FileReader;
 import java.io.IOException;
@@ -27,13 +28,15 @@ public class ProjectMemberDao extends AbstractDao<ProjectMember> {
     @Override
     protected ProjectMember readObject(ResultSet resultSet) throws SQLException {
         ProjectMember member = new ProjectMember();
-        member.setName(resultSet.getString(1));
-        member.setMail(resultSet.getString(2));
+
+        member.setId(resultSet.getInt(1));
+        member.setName(resultSet.getString(2));
+        member.setMail(resultSet.getString(3));
         return member;
     }
 
 
-    public void insert(ProjectMember projectMember) throws SQLException{
+    public void insert(ProjectMember projectMember) throws SQLException {
         insert(projectMember, "insert into projectmembers (name,email) values (?,?)");
     }
 
@@ -46,13 +49,13 @@ public class ProjectMemberDao extends AbstractDao<ProjectMember> {
         System.out.println("enter a member name to insert: ");
         String inputName = new Scanner(System.in).nextLine();
 
-        System.out.println("enter a email to "+inputName +": ");
+        System.out.println("enter a email to " + inputName + ": ");
         String inputMail = new Scanner(System.in).nextLine();
 
         Properties properties = new Properties();
         properties.load(new FileReader("task-manager.properties"));
 
-        PGSimpleDataSource dataSource= new PGSimpleDataSource();
+        PGSimpleDataSource dataSource = new PGSimpleDataSource();
         dataSource.setURL(properties.getProperty("dataSource.url"));
         dataSource.setUser(properties.getProperty("dataSource.username"));
         dataSource.setPassword(properties.getProperty("dataSource.password"));
@@ -61,10 +64,10 @@ public class ProjectMemberDao extends AbstractDao<ProjectMember> {
 
         ProjectMemberDao memberDao = new ProjectMemberDao(dataSource);
 
-       ProjectMember member = new ProjectMember();
-       member.setName(inputName);
+        ProjectMember member = new ProjectMember();
+        member.setName(inputName);
         member.setMail(inputMail);
-      memberDao.insert(member);
+        memberDao.insert(member);
         System.out.println(memberDao.listAll());
     }
 }
