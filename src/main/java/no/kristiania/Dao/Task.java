@@ -7,7 +7,8 @@ public class Task {
 
 
     }
-
+    private int taskId;
+    private int statusId= 1;
     private String taskName;
 
     public int getTaskId() {
@@ -18,8 +19,7 @@ public class Task {
         this.taskId = taskId;
     }
 
-    private int taskId;
-    private int statusId= 1;
+
 
 
     public String getTaskName() {
@@ -43,20 +43,22 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return statusId == task.statusId &&
+        return taskId == task.taskId &&
+                statusId == task.statusId &&
                 Objects.equals(taskName, task.taskName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskName, statusId);
+        return Objects.hash(taskId, statusId, taskName);
     }
 
     @Override
     public String toString() {
         return "Task{" +
-                "taskName='" + taskName + '\'' +
+                "taskId=" + taskId +
                 ", statusId=" + statusId +
+                ", taskName='" + taskName + '\'' +
                 '}';
     }
 }
