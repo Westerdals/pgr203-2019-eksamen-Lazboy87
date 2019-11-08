@@ -7,15 +7,15 @@ public class Task {
 
 
     }
-    private int id;
-    private int statusId= 1;
+    private long id;
+    private long statusId= 1;
     private String name;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -30,11 +30,11 @@ public class Task {
         this.name = name;
     }
 
-    public int getStatusId() {
+    public long getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(int statusId) {
+    public void setStatusId(long statusId) {
         this.statusId = statusId;
     }
 

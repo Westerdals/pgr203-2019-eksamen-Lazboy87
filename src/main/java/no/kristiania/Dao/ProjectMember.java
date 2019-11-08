@@ -4,16 +4,16 @@ import java.util.Objects;
 
 public class ProjectMember {
 
-    private int id;
+    private long id;
     private String name;
     private String mail;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

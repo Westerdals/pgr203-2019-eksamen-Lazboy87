@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Status {
     private String name;
-    private  int id;
+    private long id;
 
     public Status(String name, int id) {
         this.name = name;
@@ -24,11 +24,11 @@ public class Status {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

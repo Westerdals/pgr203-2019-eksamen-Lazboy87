@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Project {
     private String name;
-    private  int id;
+    private long id;
 
     public Project (){}
 
@@ -17,7 +17,7 @@ public class Project {
         return name;
     }
 
-    public int getid() {
+    public long getid() {
         return id;
     }
 
@@ -25,7 +25,7 @@ public class Project {
         this.name = name;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
