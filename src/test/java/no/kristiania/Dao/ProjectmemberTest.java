@@ -62,6 +62,18 @@ public class ProjectmemberTest {
         System.out.println(dao.listAll());
 
     }
+    @Test
+    void shouldSaveAllProductFields() throws SQLException {
+        ProjectMemberDao dao = new ProjectMemberDao(jdbcDataSource);
+        ProjectMember member = new ProjectMember();
+        long id = dao.insert(member);
+        long id2 = dao.insert(member);
+        System.out.println(id);
+        System.out.println(id2);
+
+        assertThat(dao.retrieve(id2)).isEqualToComparingFieldByField(member);
+
+    }
 
 
 }

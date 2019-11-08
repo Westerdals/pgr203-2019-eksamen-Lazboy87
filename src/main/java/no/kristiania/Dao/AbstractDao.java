@@ -15,15 +15,22 @@ public abstract class AbstractDao<T> {
         this.dataSource = dataSource;
     }
 
-    public void insert(T member, String sql1) throws SQLException {
-
+    public long insert(T member, String sql1) throws SQLException {
+        ResultSet rs  = null;
+        int id = 0;
         try (Connection conn = dataSource.getConnection();) {
-            String sql = sql1;
-            PreparedStatement statement = conn.prepareStatement(sql);
-            insertMember(member, statement);
-            statement.executeUpdate();
+            try (PreparedStatement statement = conn.prepareStatement(sql1, PreparedStatement.RETURN_GENERATED_KEYS);){
+                insertMember(member, statement);
+                int affectedRows = statement.executeUpdate();
+                if(affectedRows == 1){
+                    rs = statement.getGeneratedKeys();
+                    if(rs.next()){
+                        id = rs.getInt(1);
+                    }
+                }
+            }
         }
-
+            return id;
     }
 
     protected abstract void insertMember(T o, PreparedStatement statement) throws SQLException;
@@ -49,4 +56,5 @@ public abstract class AbstractDao<T> {
     }
 
     protected abstract T readObject(ResultSet resultSet) throws SQLException;
+
 }
