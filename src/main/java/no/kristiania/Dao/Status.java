@@ -5,31 +5,31 @@ package no.kristiania.Dao;
 import java.util.Objects;
 
 public class Status {
-    private String StatusName;
-    private  int statusId ;
+    private String name;
+    private  int id;
 
-    public Status(String statusName, int statusId) {
-        StatusName = statusName;
-        this.statusId = statusId;
+    public Status(String name, int id) {
+        this.name = name;
+        this.id = id;
     }
 
     public Status() {
     }
 
-    public String getStatusName() {
-        return StatusName;
+    public String getName() {
+        return name;
     }
 
-    public void setStatusName(String statusName) {
-        StatusName = statusName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getStatusId() {
-        return statusId;
+    public int getId() {
+        return id;
     }
 
-    public void setStatusId(int statusId) {
-        this.statusId = statusId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -37,20 +37,20 @@ public class Status {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Status status = (Status) o;
-        return statusId == status.statusId &&
-                Objects.equals(StatusName, status.StatusName);
+        return id == status.id &&
+                Objects.equals(name, status.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(StatusName, statusId);
+        return Objects.hash(name, id);
     }
 
     @Override
     public String toString() {
         return "Status{" +
-                "StatusName='" + StatusName + '\'' +
-                ", statusId=" + statusId +
+                "StatusName='" + name + '\'' +
+                ", statusId=" + id +
                 '}';
     }
 }

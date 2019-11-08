@@ -14,7 +14,7 @@ public class StatusDao extends AbstractDao<Status>{
     @Override
     protected void insertMember(Status status, PreparedStatement statement) throws SQLException {
 
-        statement.setString(1, status.getStatusName());
+        statement.setString(1, status.getName());
 
 
 
@@ -23,8 +23,8 @@ public class StatusDao extends AbstractDao<Status>{
     @Override
     protected Status readObject(ResultSet resultSet) throws SQLException {
         Status status = new Status();
-        status.setStatusName(resultSet.getString(2));
-        status.setStatusId(resultSet.getInt(1));
+        status.setName(resultSet.getString(2));
+        status.setId(resultSet.getInt(1));
         return status;
     }
 

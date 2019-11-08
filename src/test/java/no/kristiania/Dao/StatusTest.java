@@ -36,7 +36,7 @@ class StatusTest {
     @Test
     void shouldFindStatusnameandid() throws SQLException {
         Status status = new Status();
-        status.setStatusName("Finish Exam");
+        status.setName("Finish Exam");
 
 
       StatusDao dao = new StatusDao(jdbcDataSource);
@@ -51,8 +51,8 @@ class StatusTest {
         List<Status> listOfStatus = dao.listAll();
 
         AssertionsForClassTypes.assertThat(listOfStatus.size()).isEqualTo(2);
-        AssertionsForClassTypes.assertThat(listOfStatus.get(0).getStatusId()).isEqualTo(1);
-        AssertionsForClassTypes.assertThat(listOfStatus.get(1).getStatusId()).isEqualTo(2);
+        AssertionsForClassTypes.assertThat(listOfStatus.get(0).getId()).isEqualTo(1);
+        AssertionsForClassTypes.assertThat(listOfStatus.get(1).getId()).isEqualTo(2);
     }
 
 }
