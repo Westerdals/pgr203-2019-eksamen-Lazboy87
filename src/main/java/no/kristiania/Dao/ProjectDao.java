@@ -1,6 +1,7 @@
 package no.kristiania.Dao;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,11 +28,28 @@ public class ProjectDao extends AbstractDao<Project>{
     }
 
 
-    public void insert(Project project) throws SQLException{
-        insert(project, "insert into projects (project_name) values (?)");
+
+    public long insert(Project project) throws SQLException{
+        long id = insert(project, "insert into projects (project_name) values (?)");
+        project.setId((int)id);
+        return id;
     }
 
     public List<Project> listAll() throws SQLException {
         return listAll("select * from projects");
+    }
+    public Project retrieve(long id) throws SQLException{
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("select * from projects where id = ?")) {
+                statement.setLong(1, id);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if(resultSet.next()) {
+                        return (readObject(resultSet));
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        }
     }
 }

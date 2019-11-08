@@ -41,6 +41,17 @@ class ProjectTest {
         System.out.println(dao.listAll());
         assertThat(dao.listAll()).contains(project);
     }
+
+    @Test
+    void shouldSaveAllProductFields() throws SQLException {
+        ProjectDao dao = new ProjectDao(jdbcDataSource);
+        Project project = new Project();
+        long id = dao.insert(project);
+
+
+        assertThat(dao.retrieve(id)).isEqualToComparingFieldByField(project);
+
+    }
 }
 
 
