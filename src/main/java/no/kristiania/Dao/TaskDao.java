@@ -1,6 +1,7 @@
 package no.kristiania.Dao;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,12 +29,30 @@ public class TaskDao extends AbstractDao<Task> {
         task.setId(resultSet.getInt(1));
         return task;
     }
-    public void insert(Task task) throws SQLException{
-        insert(task, "insert into tasks (task_name,status_id) values (?,?)");
-    }
+
 
 
     public List<Task> listAll() throws SQLException {
         return listAll("select * from tasks");
+    }
+
+    public long insert(Task task) throws SQLException {
+        long id = insert(task, "insert into tasks (task_name,status_id) values (?,?)");
+        task.setId((int) id);
+        return id;
+    }
+    public Task retrieve(long id) throws SQLException{
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("select * from tasks where id = ?")) {
+                statement.setLong(1, id);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if(resultSet.next()) {
+                        return (readObject(resultSet));
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 package no.kristiania.Dao;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,11 +29,30 @@ public class StatusDao extends AbstractDao<Status>{
         return status;
     }
 
-    public void insert(Status status) throws SQLException{
-        insert(status, "insert into status (status_cat) values (?)");
-    }
+
 
     public List<Status> listAll() throws SQLException {
         return listAll("select * from status");
+    }
+
+
+    public long insert(Status status) throws SQLException {
+        long id = insert(status, "insert into status (status_cat) values (?)");
+        status.setId((int) id);
+        return id;
+    }
+    public Status retrieve(long id) throws SQLException{
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("select * from status where id = ?")) {
+                statement.setLong(1, id);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if(resultSet.next()) {
+                        return (readObject(resultSet));
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        }
     }
 }
