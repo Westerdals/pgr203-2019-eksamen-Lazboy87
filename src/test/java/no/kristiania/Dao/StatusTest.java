@@ -42,7 +42,7 @@ class StatusTest {
       StatusDao dao = new StatusDao(jdbcDataSource);
 
         dao.insert(status);
-        dao.insert(status);
+
 
 
         System.out.println(dao.listAll());
@@ -50,6 +50,19 @@ class StatusTest {
 
 
         assertThat(dao.retrieve(id)).isEqualToComparingFieldByField(status);
+    }
+
+    @Test
+    void shouldFindStatusinDB() throws SQLException {
+        Status status = new  Status();
+        status.setName("Test");
+
+        StatusDao dao = new StatusDao(jdbcDataSource);
+
+
+        dao.insert(status);
+        System.out.println(dao.listAll());
+        assertThat(dao.listAll()).contains(status);
     }
 
 }

@@ -34,7 +34,7 @@ public class ProjectmemberTest {
     }
 
     @Test
-    void shouldFindSavedOrders() throws SQLException {
+    void shouldFindmemberinDB() throws SQLException {
         ProjectMember member = new ProjectMember();
         member.setName("Test");
         member.setMail("test@test");
@@ -47,21 +47,7 @@ public class ProjectmemberTest {
     }
 
 
-    @Test
-    void shouldFindIDofMEMBERs() throws SQLException {
-        ProjectMember member1 = new ProjectMember();
-        ProjectMember member2 = new ProjectMember();
-        ProjectMember member3 = new ProjectMember();
 
-
-        ProjectMemberDao dao = new ProjectMemberDao(jdbcDataSource);
-        dao.insert(member1);
-        dao.insert(member2);
-        dao.insert(member3);
-
-        System.out.println(dao.listAll());
-
-    }
     @Test
     void shouldSaveAllProductFields() throws SQLException {
         ProjectMemberDao dao = new ProjectMemberDao(jdbcDataSource);

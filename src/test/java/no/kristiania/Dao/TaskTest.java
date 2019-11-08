@@ -34,24 +34,35 @@ public class TaskTest {
     }
 
     @Test
-    void shouldFindDaoSIZEandid() throws SQLException {
+    void shouldFindTasknameandid() throws SQLException {
         Task task = new Task();
         task.setName("Finish Exam");
+
 
         TaskDao dao = new TaskDao(jdbcDataSource);
 
         dao.insert(task);
-        dao.insert(task);
+
 
 
         System.out.println(dao.listAll());
-
-        List<Task> listOfTasks = dao.listAll();
-
-        assertThat(listOfTasks.size()).isEqualTo(2);
-        assertThat(listOfTasks.get(0).getId()).isEqualTo(1);
-        assertThat(listOfTasks.get(1).getId()).isEqualTo(2);
+        long id = dao.insert(task);
 
 
+        assertThat(dao.retrieve(id)).isEqualToComparingFieldByField(task);
+    }
+
+    @Test
+    void shouldFindTaskinDB() throws SQLException {
+        Task task = new  Task();
+        task.setName("Test");
+
+        TaskDao dao = new TaskDao(jdbcDataSource);
+
+
+        dao.insert(task);
+        System.out.println(dao.listAll());
+        assertThat(dao.listAll()).contains(task);
     }
 }
+
