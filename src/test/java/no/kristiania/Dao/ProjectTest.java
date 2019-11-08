@@ -32,7 +32,7 @@ class ProjectTest {
     @Test
     void shouldFindProjects() throws SQLException {
         Project project = new Project();
-        project.setProjectname("Finish Exam");
+        project.setName("Finish Exam");
 
         ProjectDao dao = new ProjectDao(jdbcDataSource);
 

@@ -12,6 +12,7 @@ import java.util.Map;
 public class HttpServer {
 
 
+
     private ServerSocket serverSocket;
     private String fileLocation;
 
@@ -51,14 +52,14 @@ public class HttpServer {
                 if (!requestPath.equals("/echo")) {
 
                     File file = new File(fileLocation + requestPath);
-                    if(file.exists()){
+                    if (file.exists()) {
                         socket.getOutputStream().write(("HTTP/1.1 200 OK\r\n" +
                                 "Content-length: " + file.length() + "\r\n" +
                                 "Connection: close\r\n" +
                                 "\r\n").getBytes());
                         new FileInputStream(file).transferTo(socket.getOutputStream());
 
-                    }else{
+                    } else {
                         socket.getOutputStream().write(("HTTP/1.1 404 OK\r\n" +
                                 "Connection: close\r\n" +
                                 "\r\n").getBytes());

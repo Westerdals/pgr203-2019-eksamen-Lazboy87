@@ -36,7 +36,7 @@ public class TaskTest {
     @Test
     void shouldFindDaoSIZEandid() throws SQLException {
         Task task = new Task();
-        task.setTaskName("Finish Exam");
+        task.setName("Finish Exam");
 
         TaskDao dao = new TaskDao(jdbcDataSource);
 
@@ -49,8 +49,8 @@ public class TaskTest {
         List<Task> listOfTasks = dao.listAll();
 
         assertThat(listOfTasks.size()).isEqualTo(2);
-        assertThat(listOfTasks.get(0).getTaskId()).isEqualTo(1);
-        assertThat(listOfTasks.get(1).getTaskId()).isEqualTo(2);
+        assertThat(listOfTasks.get(0).getId()).isEqualTo(1);
+        assertThat(listOfTasks.get(1).getId()).isEqualTo(2);
 
 
     }
