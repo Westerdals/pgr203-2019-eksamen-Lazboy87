@@ -14,15 +14,15 @@ public class ProjectDao extends AbstractDao<Project>{
 
     @Override
     protected void insertMember(Project project, PreparedStatement statement) throws SQLException {
-        statement.setString(1, project.getProjectname());
+        statement.setString(1, project.getName());
 
     }
 
     @Override
     protected Project readObject(ResultSet resultSet) throws SQLException {
         Project project = new Project();
-        project.setProjectname(resultSet.getString(2));
-        project.setProjectid(Integer.parseInt(resultSet.getString(1)));
+        project.setName(resultSet.getString(2));
+        project.setId(Integer.parseInt(resultSet.getString(1)));
         return project;
     }
 

@@ -7,27 +7,27 @@ public class Task {
 
 
     }
-    private int taskId;
+    private int id;
     private int statusId= 1;
-    private String taskName;
+    private String name;
 
-    public int getTaskId() {
-        return taskId;
+    public int getId() {
+        return id;
     }
 
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
+    public void setId(int id) {
+        this.id = id;
     }
 
 
 
 
-    public String getTaskName() {
-        return taskName;
+    public String getName() {
+        return name;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getStatusId() {
@@ -43,22 +43,22 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return taskId == task.taskId &&
+        return id == task.id &&
                 statusId == task.statusId &&
-                Objects.equals(taskName, task.taskName);
+                Objects.equals(name, task.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, statusId, taskName);
+        return Objects.hash(id, statusId, name);
     }
 
     @Override
     public String toString() {
         return "Task{" +
-                "taskId=" + taskId +
+                "taskId=" + id +
                 ", statusId=" + statusId +
-                ", taskName='" + taskName + '\'' +
+                ", taskName='" + name + '\'' +
                 '}';
     }
 }

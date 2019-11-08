@@ -3,30 +3,30 @@ package no.kristiania.Dao;
 import java.util.Objects;
 
 public class Project {
-    private String projectname;
-    private  int projectid;
+    private String name;
+    private  int id;
 
     public Project (){}
 
     public Project(String name, Integer id) {
-        this.projectname = name;
-        this.projectid = id;
+        this.name = name;
+        this.id = id;
     }
 
-    public String getProjectname() {
-        return projectname;
+    public String getName() {
+        return name;
     }
 
     public int getid() {
-        return projectid;
+        return id;
     }
 
-    public void setProjectname(String projectname) {
-        this.projectname = projectname;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setProjectid(int projectid) {
-        this.projectid = projectid;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -34,20 +34,20 @@ public class Project {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Project project = (Project) o;
-        return projectid == project.projectid &&
-                Objects.equals(projectname, project.projectname);
+        return id == project.id &&
+                Objects.equals(name, project.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(projectname, projectid);
+        return Objects.hash(name, id);
     }
 
     @Override
     public String toString() {
         return "Project{" +
-                "projectname='" + projectname + '\'' +
-                ", projectid=" + projectid +
+                "projectname='" + name + '\'' +
+                ", projectid=" + id +
                 '}';
     }
 }
