@@ -30,7 +30,8 @@ public abstract class AbstractDao<T> {
                 }
             }
         }
-            return id;
+
+        return id;
     }
 
     protected abstract void insertMember(T o, PreparedStatement statement) throws SQLException;

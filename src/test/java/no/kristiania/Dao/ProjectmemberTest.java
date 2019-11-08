@@ -67,11 +67,9 @@ public class ProjectmemberTest {
         ProjectMemberDao dao = new ProjectMemberDao(jdbcDataSource);
         ProjectMember member = new ProjectMember();
         long id = dao.insert(member);
-        long id2 = dao.insert(member);
-        System.out.println(id);
-        System.out.println(id2);
 
-        assertThat(dao.retrieve(id2)).isEqualToComparingFieldByField(member);
+
+        assertThat(dao.retrieve(id)).isEqualToComparingFieldByField(member);
 
     }
 

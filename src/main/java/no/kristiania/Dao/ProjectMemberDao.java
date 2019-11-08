@@ -40,8 +40,9 @@ public class ProjectMemberDao extends AbstractDao<ProjectMember> {
 
 
     public long insert(ProjectMember projectMember) throws SQLException {
-
-        return insert(projectMember, "insert into projectmembers (name,email) values (?,?)");
+        long id = insert(projectMember, "insert into projectmembers (name,email) values (?,?)");
+        projectMember.setId((int) id);
+        return id;
     }
 
     public List<ProjectMember> listAll() throws SQLException {
