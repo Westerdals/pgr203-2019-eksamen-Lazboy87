@@ -23,7 +23,7 @@ public class ProjectDao extends AbstractDao<Project>{
     protected Project readObject(ResultSet resultSet) throws SQLException {
         Project project = new Project();
         project.setName(resultSet.getString(2));
-        project.setId(Integer.parseInt(resultSet.getString(1)));
+        project.setId(resultSet.getInt(1));
         return project;
     }
 

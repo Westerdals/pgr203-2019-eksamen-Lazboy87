@@ -46,13 +46,10 @@ class StatusTest {
 
 
         System.out.println(dao.listAll());
+        long id = dao.insert(status);
 
 
-        List<Status> listOfStatus = dao.listAll();
-
-        AssertionsForClassTypes.assertThat(listOfStatus.size()).isEqualTo(2);
-        AssertionsForClassTypes.assertThat(listOfStatus.get(0).getId()).isEqualTo(1);
-        AssertionsForClassTypes.assertThat(listOfStatus.get(1).getId()).isEqualTo(2);
+        assertThat(dao.retrieve(id)).isEqualToComparingFieldByField(status);
     }
 
 }
