@@ -3,7 +3,7 @@ package no.kristiania.Http;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.Socket;
+import java.io.OutputStream;
 
 class FileHttpController implements HttpController {
     private HttpServer httpServer;
@@ -13,17 +13,17 @@ class FileHttpController implements HttpController {
     }
 
     @Override
-    public void handle(String requestPath, Socket socket) throws IOException {
+    public void handle(String requestPath, OutputStream outputStream) throws IOException {
         File file = new File(httpServer.fileLocation + requestPath);
         if (file.exists()) {
-            socket.getOutputStream().write(("HTTP/1.1 200 OK\r\n" +
+            outputStream.write(("HTTP/1.1 200 OK\r\n" +
                     "Content-length: " + file.length() + "\r\n" +
                     "Connection: close\r\n" +
                     "\r\n").getBytes());
-            new FileInputStream(file).transferTo(socket.getOutputStream());
+            new FileInputStream(file).transferTo(outputStream);
 
         } else {
-            socket.getOutputStream().write(("HTTP/1.1 404 OK\r\n" +
+            outputStream.write(("HTTP/1.1 404 OK\r\n" +
                     "Connection: close\r\n" +
                     "\r\n").getBytes());
 

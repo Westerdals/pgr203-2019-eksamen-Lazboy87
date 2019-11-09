@@ -51,7 +51,7 @@ public class HttpServer {
                 Map<String, String> requestParameters = parseRequestParameters(query);
 
                 if (!requestPath.equals("/echo")) {
-                    defaultController.handle(requestPath,socket);
+                    defaultController.handle(requestPath, socket.getOutputStream());
                     continue;
                 }
 
