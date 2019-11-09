@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map;
 
 class FileHttpController implements HttpController {
     private HttpServer httpServer;
@@ -13,7 +14,7 @@ class FileHttpController implements HttpController {
     }
 
     @Override
-    public void handle(String requestPath, OutputStream outputStream) throws IOException {
+    public void handle(String requestPath, Map<String, String> requestParameters, OutputStream outputStream) throws IOException {
         File file = new File(httpServer.fileLocation + requestPath);
         if (file.exists()) {
             outputStream.write(("HTTP/1.1 200 OK\r\n" +

@@ -2,8 +2,8 @@ package no.kristiania.Http;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.Socket;
+import java.util.Map;
 
 public interface HttpController {
-    void handle(String requestPath, OutputStream outputStream) throws IOException;
+    void handle(String requestPath, Map<String, String> requestParameters, OutputStream outputStream) throws IOException;
 }

@@ -10,16 +10,19 @@ import java.util.Map;
 public class HttpServer {
 
     private HttpController defaultController;
-
-
-
     private ServerSocket serverSocket;
+
+
+
     public String fileLocation;
+    private Map<String, HttpController> controllers = new HashMap<>();
 
 
     public HttpServer(int port) throws IOException {
         serverSocket = new ServerSocket(port);
         defaultController = new FileHttpController(this);
+
+        controllers.put("/echo", new EchoHttpController());
     }
 
     public static void main(String[] args) throws IOException {
@@ -29,7 +32,7 @@ public class HttpServer {
 
     }
 
-    void start() {
+    public void start() {
 
         new Thread(this::run).start();
 
@@ -49,30 +52,29 @@ public class HttpServer {
                 String requestPath = questionPos != -1 ? requestTarget.substring(0, questionPos) : requestTarget;
 
                 Map<String, String> requestParameters = parseRequestParameters(query);
+                controllers.getOrDefault(requestPath, defaultController)
+                        .handle(requestPath, requestParameters, socket.getOutputStream());
 
                 if (!requestPath.equals("/echo")) {
-                    defaultController.handle(requestPath, socket.getOutputStream());
+                    defaultController.handle(requestPath, requestParameters, socket.getOutputStream());
                     continue;
                 }
 
-                handleEchoRequest(socket, requestParameters);
+                String statusCode = requestParameters.getOrDefault("status", "200");
+                String location = requestParameters.get("location");
+                String body = requestParameters.getOrDefault("body", "Hello World!");
+
+                socket.getOutputStream().write(("HTTP/1.0 " + statusCode + " OK\r\n" +
+
+                        "Content-length: " + body.length() + "\r\n" +
+                        (location != null ? "Location: " + location + "\r\n" : "") +
+                        "\r\n" +
+                        body).getBytes());
+                controllers.get(requestPath).handle(requestPath, requestParameters, socket.getOutputStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    private void handleEchoRequest(Socket socket, Map<String, String> requestParameters) throws IOException {
-        String statusCode = requestParameters.getOrDefault("status", "200");
-        String location = requestParameters.get("location");
-        String body = requestParameters.getOrDefault("body", "Hello World!");
-
-        socket.getOutputStream().write(("HTTP/1.0 " + statusCode + " OK\r\n" +
-
-                "Content-length: " + body.length() + "\r\n" +
-                (location != null ? "Location: " + location + "\r\n" : "") +
-                "\r\n" +
-                body).getBytes());
     }
 
     private Map<String, String> parseRequestParameters(String query) {
@@ -97,6 +99,9 @@ public class HttpServer {
 
     public void setFileLocation(String fileLocation) {
         this.fileLocation = fileLocation;
+    }
+    public String getFileLocation() {
+        return fileLocation;
     }
 
 }
