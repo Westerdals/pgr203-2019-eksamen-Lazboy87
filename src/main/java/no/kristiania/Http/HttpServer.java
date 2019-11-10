@@ -1,5 +1,8 @@
 package no.kristiania.Http;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -8,7 +11,7 @@ import java.util.Map;
 
 
 public class HttpServer {
-
+    private static final Logger logger = LoggerFactory.getLogger(HttpServer.class);
     private HttpController defaultController;
     private ServerSocket serverSocket;
 
@@ -43,7 +46,9 @@ public class HttpServer {
             try {
                 Socket socket = serverSocket.accept();
                 HttpServerRequest request = new HttpServerRequest(socket.getInputStream());
+
                 String requestLine = request.getStartLine();
+                Logger.debug("Handling request:{}",requestLine);
 
                 String requestTarget = requestLine.split(" ")[1];
                 int questionPos = requestTarget.indexOf('?');
