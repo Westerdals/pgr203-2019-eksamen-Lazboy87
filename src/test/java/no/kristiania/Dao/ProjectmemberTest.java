@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
-import java.util.*;
+import java.util.Random;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -17,20 +17,33 @@ public class ProjectmemberTest {
 
     private JdbcDataSource jdbcDataSource;
 
+    public static ProjectMember sampleMember() {
+        ProjectMember member = new ProjectMember();
+        member.setName(pickOne(new String[]{"Per", "Arne", "Kristian"}));
+        return member;
+    }
+    private static String pickOne(String[] alternatives){
+        Random random = new Random();
+
+        return alternatives[random.nextInt(alternatives.length)];
+    }
+
 
     @BeforeEach
     void testDataSource() {
-        jdbcDataSource = new JdbcDataSource();
-        jdbcDataSource.setURL("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
-        Flyway.configure().dataSource(jdbcDataSource).load().migrate();
+    jdbcDataSource = createDataSource();
     }
     @AfterEach
     void teardown() {
-        jdbcDataSource = new JdbcDataSource();
-        jdbcDataSource.setURL("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
-
         Flyway.configure().dataSource(jdbcDataSource).load().clean();
         Flyway.configure().dataSource(jdbcDataSource).load().migrate();
+    }
+
+    static JdbcDataSource createDataSource(){
+        JdbcDataSource dataSource = new JdbcDataSource();
+        dataSource.setURL("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
+        Flyway.configure().dataSource(dataSource).load().migrate();
+        return dataSource;
     }
 
     @Test
