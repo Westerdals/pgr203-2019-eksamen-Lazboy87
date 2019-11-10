@@ -48,7 +48,7 @@ public class HttpServer {
                 HttpServerRequest request = new HttpServerRequest(socket.getInputStream());
 
                 String requestLine = request.getStartLine();
-                Logger.debug("Handling request:{}",requestLine);
+                logger.debug("Handling request:{}",requestLine);
 
                 String requestTarget = requestLine.split(" ")[1];
                 int questionPos = requestTarget.indexOf('?');
