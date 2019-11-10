@@ -1,5 +1,6 @@
 package no.kristiania.Http;
 
+import no.kristiania.Dao.ProjectMemberHttpController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -109,4 +110,7 @@ public class HttpServer {
         return fileLocation;
     }
 
+    public void addController(String path, ProjectMemberHttpController controller) {
+        controllers.put(path,controller);
+    }
 }
