@@ -1,5 +1,8 @@
 # PG203 Mappeinnlevering for gruppe <wiseflow gruppenummer>
 
+[![Build Status](https://travis-ci.com/Westerdals/pgr203-2019-eksamen-Lazboy87.svg?token=u5uiMCxAwytqi2hpiwkt&branch=master)](https://travis-ci.com/Westerdals/pgr203-2019-eksamen-Lazboy87)
+
+
 *Dette er en mal som det anbefales at dere følger for `README.md`-filen til hovedinnleveringen i PGR203* 
 
 ## Hvordan kjøre dette programmet
