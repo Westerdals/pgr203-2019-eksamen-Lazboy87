@@ -1,15 +1,17 @@
 package no.kristiania.Dao;
 
 import no.kristiania.Http.HttpController;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProjectMemberHttpController implements HttpController {
     private ProjectMemberDao memberDao;
+    private static final Logger Logger = LoggerFactory.getLogger(ProjectMemberHttpController.class);
 
     public ProjectMemberHttpController(ProjectMemberDao memberDao) {
 
@@ -31,6 +33,7 @@ public class ProjectMemberHttpController implements HttpController {
                     "\r\n" +
                     body).getBytes());
         } catch (SQLException e) {
+            Logger.error("While handling request{}", requestPath, e);
             String message = e.toString();
             outputStream.write(("HTTP/1.0 500 Internal server error\r\n" +
                     "Content-length: " + message.length() + "\r\n" +
