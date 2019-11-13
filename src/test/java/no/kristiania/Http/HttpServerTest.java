@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HttpServerTest {
@@ -85,13 +86,13 @@ class HttpServerTest {
 
     }@Test
     void shouldPostParameters() throws IOException {
-        String text = "content-type=text/html&body=foobar";
-        Files.writeString(Paths.get("target/myfile.txt"), text);
-        server.setFileLocation("target");
-        HttpClient client = new HttpClient("localhost", server.getPort(), "/myfile.txt");
-        HttpClientResponse response = client.execute();
-        assertEquals(text, response.getBody());
-       assertEquals( text,response.getHeader("Content-type"));
+        String formbody="content-type=text/html&body=foobar";
+        HttpClient client = new HttpClient("localhost",server.getPort(),"/echo"+formbody);
+        client.setRequestHeader("content-type","application/x-www-urlencoded");
+        client.setBody(formbody);
+        HttpClientResponse response= client.execute();
+        assertThat(response.getHeader("content-type")).isEqualTo("text.html");
+        assertThat(response.getBody()).isEqualTo("foobar");
     }
 
 }

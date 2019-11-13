@@ -50,6 +50,9 @@ public class HttpServer {
 
                 String requestLine = request.getStartLine();
                 logger.debug("Handling request:{}",requestLine);
+              // while (!HttpMessage.readLine(socket.getInputStream()).isBlank()){
+
+               //};
 
 
                 String requestTarget = requestLine.split(" ")[1];
