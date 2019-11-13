@@ -11,19 +11,25 @@ public class HttpMessage {
     protected Map<String, String> headers = new HashMap<>();
 
     public HttpMessage(InputStream inputStream) throws IOException {
-
+        String headerLine;
         startLine = readLine(inputStream);
 
+
+
+        readHeaders(inputStream, headers);
+        if (getHeader("content-Length") != null) {
+            this.body = readBytes(inputStream, Integer.parseInt(getHeader("content-Length")));
+        }
+
+    }
+
+    static void readHeaders(InputStream inputStream, Map<String, String> headers) throws IOException {
         String headerLine;
         while (!(headerLine = readLine(inputStream)).isBlank()) {
             int colonPos = headerLine.indexOf(':');
             headers.put(headerLine.substring(0,colonPos).trim().toLowerCase(),
                     headerLine.substring(colonPos+1).trim());
         }
-        if (getHeader("content-Length") != null) {
-            this.body = readBytes(inputStream, Integer.parseInt(getHeader("content-Length")));
-        }
-
     }
 
     public String getHeader(String headerName) {
