@@ -61,6 +61,7 @@ class HttpServerTest {
     }
 
 
+
     @Test
     void shouldReturnFileFromDisk() throws IOException {
         String text = "Hello Kristiania";
@@ -82,6 +83,15 @@ class HttpServerTest {
         HttpClientResponse response2 = client.execute();
         assertEquals(text, response2.getBody());
 
+    }@Test
+    void shouldPostParameters() throws IOException {
+        String text = "content-type=text/html&body=foobar";
+        Files.writeString(Paths.get("target/myfile.txt"), text);
+        server.setFileLocation("target");
+        HttpClient client = new HttpClient("localhost", server.getPort(), "/myfile.txt");
+        HttpClientResponse response = client.execute();
+        assertEquals(text, response.getBody());
+       assertEquals( text,response.getHeader("Content-type"));
     }
 
 }
