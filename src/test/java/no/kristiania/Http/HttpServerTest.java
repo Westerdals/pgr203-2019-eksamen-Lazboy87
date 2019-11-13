@@ -3,7 +3,6 @@ package no.kristiania.Http;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -26,7 +25,7 @@ class HttpServerTest {
     @Test
     void shouldGet200StatusCode() throws IOException {
         HttpClient client = new HttpClient("localhost", server.getPort(), "/echo");
-        assertEquals(200, client.execute().getStatusCode());
+        assertEquals(200, client.execute("GET").getStatusCode());
 
     }
 
@@ -35,14 +34,14 @@ class HttpServerTest {
 
 
         HttpClient client = new HttpClient("localhost", server.getPort(), "/echo?status=401");
-        assertEquals(401, client.execute().getStatusCode());
+        assertEquals(401, client.execute("GET").getStatusCode());
     }
 
 
     @Test
     void shouldGetRequestedStatusCode() throws IOException {
         HttpClient client = new HttpClient("localhost", server.getPort(), "/echo?status=401");
-        HttpClientResponse response = client.execute();
+        HttpClientResponse response = client.execute("GET");
         assertEquals(401, response.getStatusCode());
     }
 
@@ -50,7 +49,7 @@ class HttpServerTest {
     void shouldReturnResponseHeader() throws IOException {
         HttpClient client = new HttpClient("localhost", server.getPort(),
                 "/echo?status=302&location=http://example.com");
-        HttpClientResponse response = client.execute();
+        HttpClientResponse response = client.execute("GET");
         assertEquals(302, response.getStatusCode());
         assertEquals("http://example.com", response.getHeader("location"));
     }
@@ -58,7 +57,7 @@ class HttpServerTest {
     @Test
     void shouldReadBody() throws IOException {
         HttpClient client = new HttpClient("localhost", server.getPort(), "/echo?body=helloWorld!");
-        assertEquals("helloWorld!", client.execute().getBody());
+        assertEquals("helloWorld!", client.execute("GET").getBody());
     }
 
 
@@ -69,7 +68,7 @@ class HttpServerTest {
         Files.writeString(Paths.get("target/myfile.txt"), text);
         server.setFileLocation("target");
         HttpClient client = new HttpClient("localhost", server.getPort(), "/myfile.txt");
-        HttpClientResponse response = client.execute();
+        HttpClientResponse response = client.execute("GET");
         assertEquals(text, response.getBody());
     }
 
@@ -79,9 +78,9 @@ class HttpServerTest {
         Files.writeString(Paths.get("target/myfile.txt"), text);
         server.setFileLocation("target");
         HttpClient client = new HttpClient("localhost", server.getPort(), "/myfile.txt");
-        HttpClientResponse response = client.execute();
+        HttpClientResponse response = client.execute("GET");
         assertEquals(text, response.getBody());
-        HttpClientResponse response2 = client.execute();
+        HttpClientResponse response2 = client.execute("GET");
         assertEquals(text, response2.getBody());
 
     }@Test
@@ -90,7 +89,7 @@ class HttpServerTest {
         HttpClient client = new HttpClient("localhost",server.getPort(),"/echo"+formbody);
         client.setRequestHeader("content-type","application/x-www-urlencoded");
         client.setBody(formbody);
-        HttpClientResponse response= client.execute();
+        HttpClientResponse response= client.execute("POST");
         assertThat(response.getHeader("content-type")).isEqualTo("text.html");
         assertThat(response.getBody()).isEqualTo("foobar");
     }

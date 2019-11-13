@@ -17,10 +17,8 @@ public class HttpMessage {
         String headerLine;
         while (!(headerLine = readLine(inputStream)).isBlank()) {
             int colonPos = headerLine.indexOf(':');
-            String headerName = headerLine.substring(0, colonPos).trim();
-            String headerValue = headerLine.substring(colonPos + 1).trim();
-
-            headers.put(headerName.toLowerCase(), headerValue);
+            headers.put(headerLine.substring(0,colonPos).trim().toLowerCase(),
+                    headerLine.substring(colonPos+1).trim());
         }
         if (getHeader("content-Length") != null) {
             this.body = readBytes(inputStream, Integer.parseInt(getHeader("content-Length")));

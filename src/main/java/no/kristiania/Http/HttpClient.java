@@ -22,21 +22,25 @@ public class HttpClient{
         this.port = port;
         this.requestTarget = requestTarget;
         setRequestHeader("Host",hostname );
-        setRequestHeader("Connetciton","close");
+        setRequestHeader("Connection","close");
     }
 
 
-    public HttpClientResponse execute()throws IOException {
+    public HttpClientResponse execute(final String HttpMethod)throws IOException {
         Socket socket = new Socket(hostname,port);
 
         String headerString = headers.entrySet().stream()
                 .map(e -> e.getKey() + ":" + e.getValue())
                 .collect(Collectors.joining("\r\n"));
 
+        if(body != null){
+            setRequestHeader("Content-length",String.valueOf(body.length()));
+        }
 
-        socket.getOutputStream().write(("GET " + requestTarget + " HTTP/1.1\r\n" +
+
+        socket.getOutputStream().write((HttpMethod + " " + requestTarget + " HTTP/1.1\r\n" +
                 headerString+
-                "\r\r\n\r\n").getBytes());
+                "\r\r\n\r\n"+body).getBytes());
         socket.getOutputStream().flush();
 
 
