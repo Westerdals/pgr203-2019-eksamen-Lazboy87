@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add project member | KristianiaProject</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>select project member</h1>
+
+<select id="projectMembers"></select>
+
+
+
+
+<div>
+    <a href="index.html">Return to front page</a>
+</div>
+
+
+
+
+</body>
+
+
+<script>
+
+    fetch("/api/projectMembers")
+        .then(function(result) {
+            return result.text();
+        }).then(function(text) {
+        document.getElementById("projectMembers").innerHTML = text;
+    });
+</script>
+</html>

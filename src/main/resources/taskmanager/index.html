@@ -11,15 +11,10 @@
 <div id="projectMembers"></div>
 
 <div>
-    <a href="newWorker.html">Add new project member</a>
+    <button> <a href="selectworker.html">select project member</a> </button><br>
+    <br>
+    <button> <a href="newWorker.html">Add new project member</a> </button><br>
 </div>
 </body>
-<script>
-    fetch("/projectMembers")
-        .then(function(response) {
-            return response.text();
-        }).then(function(text) {
-        document.getElementById("projectMembers").innerHTML = text;
-    });
-</script>
+
 </html>
