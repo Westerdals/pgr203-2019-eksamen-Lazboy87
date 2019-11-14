@@ -6,16 +6,20 @@ import java.util.Map;
 
 class EchoHttpController implements HttpController {
     @Override
-    public void handle(String requestPath, Map<String, String> requestParameters, OutputStream outputStream) throws IOException {
+    public void handle(String requestAction, String requestPath, Map<String, String> requestParameters, String body, OutputStream outputStream) throws IOException {
+        if(requestAction.equals("POST")){
+            requestParameters = HttpServer.parseRequestParameters(body);
+        }
         String statusCode = requestParameters.getOrDefault("status", "200");
         String location = requestParameters.get("location");
-        String body = requestParameters.getOrDefault("body", "Hello World!");
+        String responseBody = requestParameters.getOrDefault("body", "Hello World!");
+        String contentType = requestParameters.getOrDefault("content-type","text/html");
 
         outputStream.write(("HTTP/1.0 " + statusCode + " OK\r\n" +
-
-                "Content-length: " + body.length() + "\r\n" +
+                "Content-type: " + contentType + "\r\n" +
+                "Content-length: " + responseBody.length() + "\r\n" +
                 (location != null ? "Location: " + location + "\r\n" : "") +
                 "\r\n" +
-                body).getBytes());
+                responseBody).getBytes());
     }
 }

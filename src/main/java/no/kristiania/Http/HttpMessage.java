@@ -6,30 +6,49 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HttpMessage {
+
     protected String body;
     protected String startLine;
-    protected Map<String, String> headers = new HashMap<>();
+    protected Map<String, String> headers;
 
     public HttpMessage(InputStream inputStream) throws IOException {
         String headerLine;
         startLine = readLine(inputStream);
 
+        headers= readHeaders(inputStream);
 
-
-        readHeaders(inputStream, headers);
         if (getHeader("content-Length") != null) {
             this.body = readBytes(inputStream, Integer.parseInt(getHeader("content-Length")));
         }
 
+
+
+    }
+    static String readBody(Map<String,String>headers,InputStream inputstream) throws IOException{
+        if(headers.containsKey("content-length")){
+            StringBuilder body = new StringBuilder();
+            for (int i = 0; i < Integer.parseInt(headers.get("content-length")); i++) {
+                body.append((char)inputstream.read());
+                
+            }
+            return body.toString();
+        }else{
+            return null;
+        }
+
     }
 
-    static void readHeaders(InputStream inputStream, Map<String, String> headers) throws IOException {
+
+    static Map<String, String> readHeaders(InputStream inputStream) throws IOException {
+        Map<String,String> headers = new HashMap<>();
         String headerLine;
         while (!(headerLine = readLine(inputStream)).isBlank()) {
             int colonPos = headerLine.indexOf(':');
+            System.out.println(headerLine);
             headers.put(headerLine.substring(0,colonPos).trim().toLowerCase(),
                     headerLine.substring(colonPos+1).trim());
         }
+        return headers;
     }
 
     public String getHeader(String headerName) {

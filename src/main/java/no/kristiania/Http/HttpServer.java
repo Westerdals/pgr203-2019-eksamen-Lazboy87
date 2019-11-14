@@ -10,6 +10,8 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
+import static no.kristiania.Http.HttpMessage.readHeaders;
+
 
 public class HttpServer {
     private static final Logger logger = LoggerFactory.getLogger(HttpServer.class);
@@ -50,9 +52,10 @@ public class HttpServer {
 
                 String requestLine = request.getStartLine();
                 logger.debug("Handling request:{}",requestLine);
+                Map<String, String> headers = request.headers;
+                String body = request.body;
 
-
-
+                String requestAction= requestLine.split(" ")[0];
                 String requestTarget = requestLine.split(" ")[1];
                 int questionPos = requestTarget.indexOf('?');
 
@@ -61,31 +64,17 @@ public class HttpServer {
 
                 Map<String, String> requestParameters = parseRequestParameters(query);
                 controllers.getOrDefault(requestPath, defaultController)
-                        .handle(requestPath, requestParameters, socket.getOutputStream());
+                        .handle(requestAction,requestPath, requestParameters,body, socket.getOutputStream());
 
-                if (!requestPath.equals("/echo")) {
-                    defaultController.handle(requestPath, requestParameters, socket.getOutputStream());
-                    continue;
-                }
 
-                String statusCode = requestParameters.getOrDefault("status", "200");
-                String location = requestParameters.get("location");
-                String body = requestParameters.getOrDefault("body", "Hello World!");
 
-                socket.getOutputStream().write(("HTTP/1.0 " + statusCode + " OK\r\n" +
-
-                        "Content-length: " + body.length() + "\r\n" +
-                        (location != null ? "Location: " + location + "\r\n" : "") +
-                        "\r\n" +
-                        body).getBytes());
-                controllers.get(requestPath).handle(requestPath, requestParameters, socket.getOutputStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private Map<String, String> parseRequestParameters(String query) {
+    static Map<String, String> parseRequestParameters(String query) {
         Map<String, String> requestParameters = new HashMap<>();
 
         if (query != null) {

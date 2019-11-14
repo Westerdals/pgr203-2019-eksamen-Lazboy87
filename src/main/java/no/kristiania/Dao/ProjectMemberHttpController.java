@@ -19,7 +19,7 @@ public class ProjectMemberHttpController implements HttpController {
     }
 
     @Override
-    public void handle(String requestPath, Map<String, String> requestParameters, OutputStream outputStream) throws IOException {
+    public void handle(String requestAction, String requestPath, Map<String, String> requestParameters, String _body, OutputStream outputStream) throws IOException {
 
         try {
             String statusCode = requestParameters.getOrDefault("status", "200");

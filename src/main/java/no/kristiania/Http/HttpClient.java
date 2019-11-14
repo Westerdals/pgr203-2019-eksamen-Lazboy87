@@ -33,7 +33,7 @@ public class HttpClient{
                 .map(e -> e.getKey() + ":" + e.getValue())
                 .collect(Collectors.joining("\r\n"));
 
-        if(body != null){
+            if(body != null){
             setRequestHeader("Content-length",String.valueOf(body.length()));
         }
 
