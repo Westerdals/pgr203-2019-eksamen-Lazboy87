@@ -8,7 +8,7 @@ import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class HttpClient{
+public class HttpClient {
 
     private final String hostname;
     private final int port;
@@ -21,26 +21,26 @@ public class HttpClient{
         this.hostname = hostname;
         this.port = port;
         this.requestTarget = requestTarget;
-        setRequestHeader("Host",hostname );
-        setRequestHeader("Connection","close");
+        setRequestHeader("Host", hostname);
+        setRequestHeader("Connection", "close");
     }
 
 
-    public HttpClientResponse execute(final String HttpMethod)throws IOException {
-        Socket socket = new Socket(hostname,port);
+    public HttpClientResponse execute(final String HttpMethod) throws IOException {
+        Socket socket = new Socket(hostname, port);
 
+        if (body != null) {
+            setRequestHeader("Content-length", String.valueOf(body.length()));
+        }
         String headerString = headers.entrySet().stream()
                 .map(e -> e.getKey() + ":" + e.getValue())
                 .collect(Collectors.joining("\r\n"));
 
-            if(body != null){
-            setRequestHeader("Content-length",String.valueOf(body.length()));
-        }
 
 
         socket.getOutputStream().write((HttpMethod + " " + requestTarget + " HTTP/1.1\r\n" +
-                headerString+
-                "\r\r\n\r\n"+body).getBytes());
+                headerString +
+                "\r\r\n\r\n" + body).getBytes());
         socket.getOutputStream().flush();
 
 
@@ -48,7 +48,7 @@ public class HttpClient{
     }
 
     public void setRequestHeader(String headerName, String headerValue) {
-        headers.put(headerName,headerValue);
+        headers.put(headerName, headerValue);
     }
 
 

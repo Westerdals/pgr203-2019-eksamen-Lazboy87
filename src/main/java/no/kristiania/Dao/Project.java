@@ -17,7 +17,7 @@ public class Project {
         return name;
     }
 
-    public long getid() {
+    public long getId() {
         return id;
     }
 

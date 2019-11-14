@@ -74,7 +74,7 @@ public class HttpServer {
         }
     }
 
-    static Map<String, String> parseRequestParameters(String query) {
+    public static Map<String, String> parseRequestParameters(String query) {
         Map<String, String> requestParameters = new HashMap<>();
 
         if (query != null) {

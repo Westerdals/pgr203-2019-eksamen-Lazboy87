@@ -1,38 +1,37 @@
 package no.kristiania.Dao;
 
 import no.kristiania.Http.HttpController;
+import no.kristiania.Http.HttpServer;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import no.kristiania.Http.HttpServer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+public class ProjectHttpController implements HttpController {
+    private ProjectDao projectDao;
+    private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(ProjectMemberHttpController.class);
 
-public class ProjectMemberHttpController implements HttpController {
-    private ProjectMemberDao memberDao;
-    private static final Logger Logger = LoggerFactory.getLogger(ProjectMemberHttpController.class);
+    public ProjectHttpController(ProjectDao projectDao) {
 
-    public ProjectMemberHttpController(ProjectMemberDao memberDao) {
-
-        this.memberDao = memberDao;
+        this.projectDao = projectDao;
     }
 
     @Override
     public void handle(String requestAction, String requestPath, Map<String, String> requestParameters, String requestBody, OutputStream outputStream) throws IOException {
         try {
-        if (requestAction.equalsIgnoreCase("POST")) {
-    requestParameters = HttpServer.parseRequestParameters(requestBody);
-    ProjectMember member = new ProjectMember();
-    member.setName(requestParameters.get("memberName"));
-    member.setMail(requestParameters.get("mail"));
+            if (requestAction.equalsIgnoreCase("POST")) {
+                requestParameters = HttpServer.parseRequestParameters(requestBody);
+                Project project = new Project();
+                project.setName(requestParameters.get("projectName"));
 
-    memberDao.insert(member);
-    return;
 
-}
+                projectDao.insert(project);
+                return;
+
+            }
 
             String statusCode = requestParameters.getOrDefault("status", "200");
             String location = requestParameters.get("location");
@@ -58,7 +57,7 @@ public class ProjectMemberHttpController implements HttpController {
 
 
     public String getBody() throws SQLException {
-        String body = memberDao.listAll().stream()
+        String body = projectDao.listAll().stream()
                 .map(p -> String.format("<option value='%s'>%s</option>", p.getId(), p.getName()))
                 .collect(Collectors.joining(""));
         return body;
