@@ -33,22 +33,22 @@ Programmet skal leveres i form av et maven prosjekt som kan bygge en `executable
 Dere skal levere en webserver som skal kunne brukes i nettleseren for å administrer oppgaver i et prosjektstyringssystem.
 
 Funksjonaliteten bør inkludere:
-* Opprett ny prosjektoppgave
-* Liste opp prosjektoppgaver, inkludert status og tildelte prosjektmedlemmer
-* Tildel oppgave til prosjektmedlemmer
+[x] Opprett ny prosjektoppgave 
+Liste opp prosjektoppgaver, inkludert status og tildelte prosjektmedlemmer
+[x] Tildel oppgave til prosjektmedlemmer
 * Endre oppgavestatus
 * Filtrere oppgaver på tilordnet en prosjektmedlem
-* Legge til nye prosjektmedlemmer
-* Legge til nye status-kategorier
+[x]Legge til nye prosjektmedlemmer
+[x]Legge til nye status-kategorier
 
 Prosjektet må følge god programmeringsskikk. Dette er viktige krav og feil på et enkelt punkt kan gi en hel karakter i trekk.
-* Koden skal utvikles på Git, med Maven og kjøre tester på Travis-CI
-* Koden skal leverer med god testdekning
-* Det skal ikke forekomme SQL Injection feil
-* Databasepassord skal være konfigurert og der det er mulig for meg å se det skal databasepassord være sterke
+[x] Koden skal utvikles på Git, med Maven og kjøre tester på Travis-CI
+[x] Koden skal leverer med god testdekning
+[x] Det skal ikke forekomme SQL Injection feil
+[x] Databasepassord skal være konfigurert og der det er mulig for meg å se det skal databasepassord være sterke
 * README-fil må dokumentere hvordan man bygger, konfigurerer og kjører løsningen
 * README-fil må dokumentere designet på løsningen
-* Koden skal følge god kodestandard som beskrevet underveis i kurset. Se sjekkliste fra siste forelesning for endelig kodestandard
+[x] Koden skal følge god kodestandard som beskrevet underveis i kurset. Se sjekkliste fra siste forelesning for endelig kodestandard
 
 Brukervennlighet *er **ikke*** et vurderingskriterie for karakteren.
 
@@ -127,7 +127,7 @@ body {
 
 ### README.md
 
-* [ ] `README.md` inneholder en korrekt link til Travis CI
+* [x] `README.md` inneholder en korrekt link til Travis CI
 * [ ] `README.md` beskriver prosjektets funksjonalitet, hvordan man bygger det og hvordan man kjører det 
 * [ ] `README.md` beskriver eventuell ekstra leveranse utover minimum
 * [ ] `README.md` inneholder link til en diagram som viser datamodellen
@@ -136,23 +136,23 @@ body {
 ### Koden
 
 * [x] `mvn package` bygger en executable jar-fil
-* [ ] Koden inneholder et godt sett med tester
-* [ ] `java -jar target/...jar` (etter `mvn package`) lar bruker legge til å liste ut data fra databasen
+* [x] Koden inneholder et godt sett med tester
+* [x] `java -jar target/...jar` (etter `mvn package`) lar bruker legge til å liste ut data fra databasen
 * [x] Programmet leser `dataSource.url`, `dataSource.username` og `dataSource.password` fra `task-manager.properties` for å connecte til databasen
 * [x] Programmet bruker Flywaydb for å sette opp databaseskjema
 * [ ] Server skriver nyttige loggmeldinger, inkludert informasjon om hvilken URL den kjører på ved oppstart
-* [ ] `.gitignore` inneholder nødvendige filer
+* [x] `.gitignore` inneholder nødvendige filer
 
 ### Funksjonalitet
 
-* [ ] Programmet kan liste prosjektdeltagere fra databasen
-* [ ] Programmet lar bruker opprette nye prosjektdeltagere i databasen
-* [ ] Programmet kan opprette og liste prosjektoppgaver fra databasen
+* [x] Programmet kan liste prosjektdeltagere fra databasen
+* [x] Programmet lar bruker opprette nye prosjektdeltagere i databasen
+* [x] Programmet kan opprette og liste prosjektoppgaver fra databasen
 
 
 ## Vedlegg: Mulighet for ekstrapoeng
 
-* [ ] Avansert datamodell (mer enn 3 tabeller)
+* [x] Avansert datamodell (mer enn 3 tabeller)
 * [ ] Avansert funksjonalitet (redigering av prosjektmedlemmer, statuskategorier, prosjekter)
 * [ ] Implementasjon av cookies for å konstruere sesjoner
 * [ ] UML diagram som dokumenterer datamodell og/eller arkitektur (presentert i README.md)
