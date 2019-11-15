@@ -1,7 +1,7 @@
 package no.kristiania.Dao;
 
-import no.kristiania.Http.HttpController;
 import no.kristiania.Http.HttpServer;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
@@ -10,13 +10,14 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class TaskHttpController implements HttpController {
+public class AddTaskMemberHttpController {
+    private ProjectMemberDao memberDao;
     private TaskDao taskDao;
-    private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(TaskHttpController.class);
+    private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(AddTaskMemberHttpController.class);
 
-    public TaskHttpController(TaskDao taskDao) {
-
-        this.taskDao = taskDao;
+    public AddTaskMemberHttpController(ProjectMemberDao memberDao,TaskDao taskDao) {
+        this.taskDao= taskDao;
+        this.memberDao = memberDao;
     }
 
     @Override
@@ -24,11 +25,12 @@ public class TaskHttpController implements HttpController {
         try {
             if (requestAction.equalsIgnoreCase("POST")) {
                 requestParameters = HttpServer.parseRequestParameters(requestBody);
-                Task task = new Task();
-                task.setName(requestParameters.get("taskName"));
+
+                System.out.println((requestParameters.get("memberName")));
+                System.out.println( (requestParameters.get("taskName")));
 
 
-                taskDao.insert(task);
+
                 return;
 
             }
@@ -57,13 +59,16 @@ public class TaskHttpController implements HttpController {
 
 
     public String getBody() throws SQLException {
-        String body = taskDao.listAll().stream()
+        String body = memberDao.listAll().stream()
                 .map(p -> String.format("<option value='%s'>%s</option>", p.getId(), p.getName()))
                 .collect(Collectors.joining(""));
+
+
         return body;
     }
 
+    }
+
+
 
 }
-
-

@@ -13,15 +13,15 @@
 
 
 <h1>Add Task to member</h1>
-<select id="projectMembers"></select><br><br><br><br>
+<form  action="/api/addTaskMember" method="POST">
+Member:<select name="memberName" id="projectMembersadd"></select> Task: <select name="taskName" id="Taskadd"></select>  <button>Add</button>
+</form>
+
 
 <h1>List Task,Member and status</h1>
-<select id="projectMembers"></select><br><br><br><br>
+<select id="projectMembersall"></select><br><br><br><br>
 
-Workers:
-<div id="projectMembersdis"></div><br><br>
-Email:<br>
-<div  id="mail"></div>
+
 
 
 
@@ -44,9 +44,20 @@ Email:<br>
         .then(function(result) {
             return result.text();
         }).then(function(text) {
-        //document.getElementById("mail").innerHTML = text;
-        document.getElementById("projectMembers").innerHTML = text;
-       // document.getElementById("projectMembersdis").innerHTML = text;
+            document.getElementById("projectMembersadd").innerHTML = text;
+            document.getElementById("projectMembers").innerHTML = text;
+            document.getElementById("projectMembersall").innerHTML = text;
+
+
+        });
+
+    fetch("/api/tasks")
+        .then(function(result) {
+            return result.text();
+        }).then(function(text) {
+        document.getElementById("Taskadd").innerHTML = text;
+
+
 
     });
 </script>
