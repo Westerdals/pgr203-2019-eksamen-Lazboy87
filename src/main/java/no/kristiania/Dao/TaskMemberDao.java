@@ -7,10 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class TaskMemberDao extends AbstractDao<TaskMember>{{
-
-
-}
+public class TaskMemberDao extends AbstractDao<TaskMember> {
 
     public TaskMemberDao(DataSource dataSource) {
         super(dataSource);
@@ -34,16 +31,29 @@ public class TaskMemberDao extends AbstractDao<TaskMember>{{
         return listAll("select * from taskmembers");
     }
 
-    public long insert(TaskMember taskMember) throws SQLException {
-        long id = insert(taskMember, "insert into taskmembers (member_id,task_id) values (?,?)");
-        taskMember.setMemberId((int) id);
-        taskMember.setTaskId((int) id);
-        return id;
+    public void insert(TaskMember taskMember) throws SQLException {
+        insert(taskMember, "insert into taskmembers (member_id,task_id) values (?,?)");
     }
 
-    public TaskMember retrieveTaskID(long id) throws SQLException{
+    public TaskMember retrieveTaskID(long id) throws SQLException {
         try (Connection connection = dataSource.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement("select * from status where id = ?")) {
+            try (PreparedStatement statement = connection.prepareStatement("select * from taskmembers where task_id = ?")) {
+                statement.setLong(1, id);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return (readObject(resultSet));
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        }
+
+
+    }
+    public TaskMember retrieveMemberId(long id) throws SQLException{
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("select * from taskmembers where member_id = ?")) {
                 statement.setLong(1, id);
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if(resultSet.next()) {
@@ -54,19 +64,5 @@ public class TaskMemberDao extends AbstractDao<TaskMember>{{
                 }
             }
         }
-        public TaskMember retrieveMemberId(long id) throws SQLException{
-            try (Connection connection = dataSource.getConnection()) {
-                try (PreparedStatement statement = connection.prepareStatement("select * from status where id = ?")) {
-                    statement.setLong(1, id);
-                    try (ResultSet resultSet = statement.executeQuery()) {
-                        if(resultSet.next()) {
-                            return (readObject(resultSet));
-                        } else {
-                            return null;
-                        }
-                    }
-                }
-            }
     }
-
 }

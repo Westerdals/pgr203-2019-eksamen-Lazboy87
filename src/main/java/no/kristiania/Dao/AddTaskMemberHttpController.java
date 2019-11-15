@@ -11,13 +11,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class AddTaskMemberHttpController implements HttpController {
-    private ProjectMemberDao memberDao;
-    private TaskDao taskDao;
+    private TaskMemberDao taskMemberDao;
+
     private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(AddTaskMemberHttpController.class);
 
-    public AddTaskMemberHttpController() {
-        this.taskDao= taskDao;
-        this.memberDao = memberDao;
+    public AddTaskMemberHttpController(TaskMemberDao taskMemberDao) {
+        this.taskMemberDao = taskMemberDao;
     }
 
     @Override
@@ -25,10 +24,11 @@ public class AddTaskMemberHttpController implements HttpController {
         try {
             if (requestAction.equalsIgnoreCase("POST")) {
                 requestParameters = HttpServer.parseRequestParameters(requestBody);
+                TaskMember taskMember = new TaskMember();
+                taskMember.setMemberId(Long.parseLong(requestParameters.get("memberName")));
+                taskMember.setTaskId(Long.parseLong(requestParameters.get("taskName")));
 
-                System.out.println((requestParameters.get("memberName")));
-                System.out.println((requestParameters.get("taskName")));
-
+                taskMemberDao.insert(taskMember);
 
 
                 return;
@@ -59,9 +59,8 @@ public class AddTaskMemberHttpController implements HttpController {
 
 
     public String getBody() throws SQLException {
-        String body = memberDao.listAll().stream()
-                .map(p -> String.format("<option value='%s'>%s</option>", p.getId(), p.getName()))
-                .collect(Collectors.joining(""));
+
+        String body = "";
 
 
         return body;
