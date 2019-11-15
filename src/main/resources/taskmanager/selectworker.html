@@ -31,13 +31,16 @@ Email:<br>
 
 <script>
 
+
+
     fetch("/api/projectMembers")
         .then(function(result) {
             return result.text();
         }).then(function(text) {
+        //document.getElementById("mail").innerHTML = text;
         document.getElementById("projectMembers").innerHTML = text;
-        document.getElementById("projectMembersdis").innerHTML = text;
-        document.getElementById("mail").innerHTML = text;
+       // document.getElementById("projectMembersdis").innerHTML = text;
+
     });
 </script>
 </html>

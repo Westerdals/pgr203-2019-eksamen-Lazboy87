@@ -23,16 +23,16 @@ public class ProjectMemberHttpController implements HttpController {
     @Override
     public void handle(String requestAction, String requestPath, Map<String, String> requestParameters, String requestBody, OutputStream outputStream) throws IOException {
         try {
-        if (requestAction.equalsIgnoreCase("POST")) {
-    requestParameters = HttpServer.parseRequestParameters(requestBody);
-    ProjectMember member = new ProjectMember();
-    member.setName(requestParameters.get("memberName"));
-    member.setMail(requestParameters.get("mail"));
+            if (requestAction.equalsIgnoreCase("POST")) {
+                requestParameters = HttpServer.parseRequestParameters(requestBody);
+                ProjectMember member = new ProjectMember();
+                member.setName(requestParameters.get("memberName"));
+                member.setMail(requestParameters.get("mail"));
 
-    memberDao.insert(member);
-    return;
+                memberDao.insert(member);
+                return;
 
-}
+            }
 
             String statusCode = requestParameters.getOrDefault("status", "200");
             String location = requestParameters.get("location");

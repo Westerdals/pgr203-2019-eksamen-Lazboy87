@@ -2,6 +2,7 @@ package no.kristiania.Dao;
 
 import no.kristiania.Http.HttpController;
 import no.kristiania.Http.HttpServer;
+import org.flywaydb.core.Flyway;
 import org.postgresql.ds.PGSimpleDataSource;
 
 import java.io.FileReader;
@@ -21,11 +22,12 @@ public class TaskManagementServer {
         dataSource.setUser(properties.getProperty("dataSource.username"));
         dataSource.setPassword(properties.getProperty("dataSource.password"));
 
+        Flyway.configure().dataSource(dataSource).load().migrate();
 
         HttpServer server = new HttpServer(8080);
         server.setFileLocation("src/main/resources/taskmanager");
         server.addController("/api/projectMembers", new ProjectMemberHttpController(new ProjectMemberDao(dataSource)));
-        server.addController("/api/project", new ProjectHttpController(new ProjectDao(dataSource)));
+
         server.addController("/api/status", new StatusHttpController(new StatusDao(dataSource)));
         server.addController("/api/tasks", new TaskHttpController(new TaskDao(dataSource)));
 
