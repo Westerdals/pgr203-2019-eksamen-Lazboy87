@@ -1,21 +1,21 @@
 package no.kristiania.Dao;
 
+import no.kristiania.Http.HttpController;
 import no.kristiania.Http.HttpServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class AddTaskMemberHttpController {
+public class AddTaskMemberHttpController implements HttpController {
     private ProjectMemberDao memberDao;
     private TaskDao taskDao;
     private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(AddTaskMemberHttpController.class);
 
-    public AddTaskMemberHttpController(ProjectMemberDao memberDao,TaskDao taskDao) {
+    public AddTaskMemberHttpController() {
         this.taskDao= taskDao;
         this.memberDao = memberDao;
     }
@@ -27,7 +27,7 @@ public class AddTaskMemberHttpController {
                 requestParameters = HttpServer.parseRequestParameters(requestBody);
 
                 System.out.println((requestParameters.get("memberName")));
-                System.out.println( (requestParameters.get("taskName")));
+                System.out.println((requestParameters.get("taskName")));
 
 
 
@@ -71,4 +71,4 @@ public class AddTaskMemberHttpController {
 
 
 
-}
+
