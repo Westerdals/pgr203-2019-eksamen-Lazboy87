@@ -37,7 +37,7 @@ public class StatusDao extends AbstractDao<Status>{
 
 
     public long insert(Status status) throws SQLException {
-        long id = insert(status, "insert into status (status_cat) vgit alues (?)");
+        long id = insert(status, "insert into status (status_cat) values (?)");
         status.setId((int) id);
         return id;
     }
