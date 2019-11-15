@@ -101,7 +101,8 @@ public class HttpServer {
         return fileLocation;
     }
 
-    public void addController(String path, ProjectMemberHttpController controller) {
+    public void addController(String path, HttpController controller) {
         controllers.put(path,controller);
     }
+
 }

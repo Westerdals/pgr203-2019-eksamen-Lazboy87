@@ -1,5 +1,6 @@
 package no.kristiania.Dao;
 
+import no.kristiania.Http.HttpController;
 import no.kristiania.Http.HttpServer;
 import org.postgresql.ds.PGSimpleDataSource;
 
@@ -10,6 +11,7 @@ import java.util.Properties;
 public class TaskManagementServer {
     public static void main(String[] args) throws IOException {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
+
 
         Properties properties = new Properties();
         try(FileReader reader = new FileReader("task-manager.properties")){
@@ -23,6 +25,10 @@ public class TaskManagementServer {
         HttpServer server = new HttpServer(8080);
         server.setFileLocation("src/main/resources/taskmanager");
         server.addController("/api/projectMembers", new ProjectMemberHttpController(new ProjectMemberDao(dataSource)));
+        server.addController("/api/project", new ProjectHttpController(new ProjectDao(dataSource)));
+        server.addController("/api/status", new StatusHttpController(new StatusDao(dataSource)));
+        server.addController("/api/task", new TaskHttpController(new TaskDao(dataSource)));
+
         server.start();
     }
 }

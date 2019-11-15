@@ -2,6 +2,7 @@ package no.kristiania.Dao;
 
 import no.kristiania.Http.HttpController;
 import no.kristiania.Http.HttpServer;
+import org.postgresql.ds.PGSimpleDataSource;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;

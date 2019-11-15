@@ -9,7 +9,12 @@
 
 <h1>select project member</h1>
 
-<select id="projectMembers"></select>
+<select id="projectMembers"></select><br><br><br><br>
+
+Workers:
+<div id="projectMembersdis"></div><br><br>
+Email:<br>
+<div  id="mail"></div>
 
 
 
@@ -31,6 +36,8 @@
             return result.text();
         }).then(function(text) {
         document.getElementById("projectMembers").innerHTML = text;
+        document.getElementById("projectMembersdis").innerHTML = text;
+        document.getElementById("mail").innerHTML = text;
     });
 </script>
 </html>
