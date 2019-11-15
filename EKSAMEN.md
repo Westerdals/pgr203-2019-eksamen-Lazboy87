@@ -46,8 +46,8 @@ Prosjektet må følge god programmeringsskikk. Dette er viktige krav og feil på
 * [x] Koden skal leverer med god testdekning
 * [x] Det skal ikke forekomme SQL Injection feil
 * [x] Databasepassord skal være konfigurert og der det er mulig for meg å se det skal databasepassord være sterke
-* README-fil må dokumentere hvordan man bygger, konfigurerer og kjører løsningen
-* README-fil må dokumentere designet på løsningen
+* [ ] README-fil må dokumentere hvordan man bygger, konfigurerer og kjører løsningen
+* [ ] README-fil må dokumentere designet på løsningen
 * [x] Koden skal følge god kodestandard som beskrevet underveis i kurset. Se sjekkliste fra siste forelesning for endelig kodestandard
 
 Brukervennlighet *er **ikke*** et vurderingskriterie for karakteren.
