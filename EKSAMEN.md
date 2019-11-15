@@ -33,22 +33,22 @@ Programmet skal leveres i form av et maven prosjekt som kan bygge en `executable
 Dere skal levere en webserver som skal kunne brukes i nettleseren for å administrer oppgaver i et prosjektstyringssystem.
 
 Funksjonaliteten bør inkludere:
-[x] Opprett ny prosjektoppgave 
-Liste opp prosjektoppgaver, inkludert status og tildelte prosjektmedlemmer
-[x] Tildel oppgave til prosjektmedlemmer
-* Endre oppgavestatus
-* Filtrere oppgaver på tilordnet en prosjektmedlem
-[x]Legge til nye prosjektmedlemmer
-[x]Legge til nye status-kategorier
+* [x] Opprett ny prosjektoppgave 
+* [ ] Liste opp prosjektoppgaver, inkludert status og tildelte prosjektmedlemmer
+* [x] Tildel oppgave til prosjektmedlemmer
+* [ ] Endre oppgavestatus
+* [ ] Filtrere oppgaver på tilordnet en prosjektmedlem
+* [x] Legge til nye prosjektmedlemmer
+* [x] Legge til nye status-kategorier
 
 Prosjektet må følge god programmeringsskikk. Dette er viktige krav og feil på et enkelt punkt kan gi en hel karakter i trekk.
-[x] Koden skal utvikles på Git, med Maven og kjøre tester på Travis-CI
-[x] Koden skal leverer med god testdekning
-[x] Det skal ikke forekomme SQL Injection feil
-[x] Databasepassord skal være konfigurert og der det er mulig for meg å se det skal databasepassord være sterke
+* [x] Koden skal utvikles på Git, med Maven og kjøre tester på Travis-CI
+* [x] Koden skal leverer med god testdekning
+* [x] Det skal ikke forekomme SQL Injection feil
+* [x] Databasepassord skal være konfigurert og der det er mulig for meg å se det skal databasepassord være sterke
 * README-fil må dokumentere hvordan man bygger, konfigurerer og kjører løsningen
 * README-fil må dokumentere designet på løsningen
-[x] Koden skal følge god kodestandard som beskrevet underveis i kurset. Se sjekkliste fra siste forelesning for endelig kodestandard
+* [x] Koden skal følge god kodestandard som beskrevet underveis i kurset. Se sjekkliste fra siste forelesning for endelig kodestandard
 
 Brukervennlighet *er **ikke*** et vurderingskriterie for karakteren.
 
