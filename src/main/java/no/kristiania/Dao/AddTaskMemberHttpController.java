@@ -85,7 +85,11 @@ public class AddTaskMemberHttpController implements HttpController {
                     bod.append("<article>\n" +
                             "        <h1>"+ tasks.get(i).getName() +"</h1>\n" +
                             "\n" +
+                            "        <h4> Status: </h4>\n" +
+                            "\n" +
                             "        <p>"+ tasks.get(i).getStatusName() + "</p>\n" +
+                            "\n" +
+                            "        <h4> Members: </h4>\n" +
                             "\n" +
                             "        <div>"+ memberName + "</div>\n" +
                             "\n" +

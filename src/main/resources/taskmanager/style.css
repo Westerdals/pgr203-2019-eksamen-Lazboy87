@@ -1,6 +1,5 @@
 body {
-    background-color: lime;
-
+    background-color: greenyellow;
 }
 
 
@@ -12,11 +11,11 @@ display: inline;
 
 .container{
     display: grid;
-    grid-template-columns: 10% 10% 10% 10% 10% 10%;
+    grid-template-columns: 10% 10% 10% 10%;
 }
 
 .container article{
-    background: #ddd;
+    background: lightblue;
     border-style: solid;
     border-color: black;
     margin: 10px;
