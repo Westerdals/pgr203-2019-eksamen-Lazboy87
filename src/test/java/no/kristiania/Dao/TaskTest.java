@@ -33,7 +33,8 @@ public class TaskTest {
         Flyway.configure().dataSource(jdbcDataSource).load().migrate();
     }
 
-    @Test
+
+   /* @Test
     void shouldFindTasknameandid() throws SQLException {
         Task task = new Task();
         task.setName("Finish Exam");
@@ -51,7 +52,7 @@ public class TaskTest {
 
         assertThat(dao.retrieve(id)).isEqualToComparingFieldByField(task);
     }
-
+*/
     @Test
     void shouldFindTaskinDB() throws SQLException {
         Task task = new  Task();

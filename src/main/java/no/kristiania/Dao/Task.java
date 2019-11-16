@@ -9,6 +9,7 @@ public class Task {
     }
     private long id;
     private long statusId= 1;
+    private String statusName;
     private String name;
 
     public long getId() {
@@ -45,20 +46,30 @@ public class Task {
         Task task = (Task) o;
         return id == task.id &&
                 statusId == task.statusId &&
+                Objects.equals(statusName, task.statusName) &&
                 Objects.equals(name, task.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, statusId, name);
+        return Objects.hash(id, statusId, statusName, name);
     }
 
     @Override
     public String toString() {
         return "Task{" +
-                "taskId=" + id +
+                "id=" + id +
                 ", statusId=" + statusId +
-                ", taskName='" + name + '\'' +
+                ", statusName='" + statusName + '\'' +
+                ", name='" + name + '\'' +
                 '}';
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    public String getStatusName(){
+        return statusName;
     }
 }

@@ -16,7 +16,8 @@ public class TaskDao extends AbstractDao<Task> {
     @Override
     protected void insertMember(Task task, PreparedStatement statement) throws SQLException {
         statement.setString(1, task.getName());
-        statement.setLong(2, task.getId());
+        statement.setLong(2, task.getStatusId());
+
 
     }
 
@@ -24,7 +25,8 @@ public class TaskDao extends AbstractDao<Task> {
     protected Task readObject(ResultSet resultSet) throws SQLException {
 
         Task task = new Task();
-
+        task.setStatusName(resultSet.getString(4));
+        task.setStatusId(resultSet.getInt(3));
         task.setName(resultSet.getString(2));
         task.setId(resultSet.getInt(1));
         return task;
@@ -33,14 +35,17 @@ public class TaskDao extends AbstractDao<Task> {
 
 
     public List<Task> listAll() throws SQLException {
-        return listAll("select * from tasks");
+        return listAll("select t.id, t.task_name, t.status_id, s.status_cat\n" +
+                "from tasks t left join status s on t.status_id = s.id");
     }
+
 
     public long insert(Task task) throws SQLException {
         long id = insert(task, "insert into tasks (task_name,status_id) values (?,?)");
         task.setId((int) id);
         return id;
     }
+    /*
     public Task retrieve(long id) throws SQLException{
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("select * from tasks where id = ?")) {
@@ -54,5 +59,5 @@ public class TaskDao extends AbstractDao<Task> {
                 }
             }
         }
-    }
+    }*/
 }

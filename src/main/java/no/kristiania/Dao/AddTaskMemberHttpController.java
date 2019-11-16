@@ -69,9 +69,10 @@ public class AddTaskMemberHttpController implements HttpController {
         String body = "";
                 StringBuilder bod = new StringBuilder();
 
-                for(int i = 0; i < taskDao.listAll().size(); i++){
+        List<Task> tasks = taskDao.listAll();
+        for(int i = 0; i < tasks.size(); i++){
 
-                    String taskId = ""+taskDao.listAll().get(i).getId();
+                    String taskId = ""+ tasks.get(i).getId();
                     String sql = "select m.* from taskmembers tm join projectmembers m on tm.member_id = m.id where tm.task_id = " + taskId;
                     String memberName="";
                     System.out.println(i);
@@ -84,9 +85,9 @@ public class AddTaskMemberHttpController implements HttpController {
                     }
 
                     bod.append("<article>\n" +
-                            "        <h1>"+ taskDao.listAll().get(i).getName() +"</h1>\n" +
+                            "        <h1>"+ tasks.get(i).getName() +"</h1>\n" +
                             "\n" +
-                            "        <p>fff</p>\n" +
+                            "        <p>"+ tasks.get(i).getStatusName() + "</p>\n" +
                             "\n" +
                             "        <div>"+ memberName + "</div>\n" +
                             "\n" +
