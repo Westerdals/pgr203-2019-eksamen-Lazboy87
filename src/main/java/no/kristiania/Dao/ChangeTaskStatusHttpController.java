@@ -10,7 +10,8 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ChangeTaskStatusHttpController implements HttpController { private TaskDao taskDao;
+public class ChangeTaskStatusHttpController implements HttpController {
+    private TaskDao taskDao;
     private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(TaskHttpController.class);
 
     public ChangeTaskStatusHttpController(TaskDao taskDao) {
@@ -54,7 +55,6 @@ public class ChangeTaskStatusHttpController implements HttpController { private 
         }
 
     }
-
 
 
     public String getBody() throws SQLException {

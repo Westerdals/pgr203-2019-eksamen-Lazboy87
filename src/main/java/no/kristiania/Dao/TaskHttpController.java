@@ -29,7 +29,6 @@ public class TaskHttpController implements HttpController {
                 task.setName(requestParameters.get("taskName"));
 
 
-
                 taskDao.insert(task);
                 return;
 
@@ -55,7 +54,6 @@ public class TaskHttpController implements HttpController {
         }
 
     }
-
 
 
     public String getBody() throws SQLException {

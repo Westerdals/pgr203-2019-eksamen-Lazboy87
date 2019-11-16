@@ -4,14 +4,13 @@ import java.util.Objects;
 
 public class TaskMember {
     private long memberId;
-    private long taskId= 1;
+    private long taskId = 1;
 
 
     public TaskMember() {
         this.memberId = memberId;
         this.taskId = taskId;
     }
-
 
 
     public long getMemberId() {

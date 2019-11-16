@@ -41,12 +41,12 @@ public class ProjectMemberDao extends AbstractDao<ProjectMember> {
         return listAll("select * from projectmembers");
     }
 
-    public ProjectMember retrieve(long id) throws SQLException{
+    public ProjectMember retrieve(long id) throws SQLException {
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("select * from projectmembers where id = ?")) {
                 statement.setLong(1, id);
                 try (ResultSet resultSet = statement.executeQuery()) {
-                    if(resultSet.next()) {
+                    if (resultSet.next()) {
                         return (readObject(resultSet));
                     } else {
                         return null;
@@ -55,8 +55,6 @@ public class ProjectMemberDao extends AbstractDao<ProjectMember> {
             }
         }
     }
-
-
 
 
 }

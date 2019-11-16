@@ -55,7 +55,6 @@ public class StatusHttpController implements HttpController {
     }
 
 
-
     public String getBody() throws SQLException {
         String body = statusDao.listAll().stream()
                 .map(p -> String.format("<option value='%s'>%s</option>", p.getId(), p.getName()))

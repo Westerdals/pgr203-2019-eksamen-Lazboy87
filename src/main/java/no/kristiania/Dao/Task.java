@@ -3,10 +3,11 @@ package no.kristiania.Dao;
 import java.util.Objects;
 
 public class Task {
-    public Task(){
+    public Task() {
 
 
     }
+
     private long id;
     private long statusId;
     private String statusName;
@@ -19,8 +20,6 @@ public class Task {
     public void setId(long id) {
         this.id = id;
     }
-
-
 
 
     public String getName() {
@@ -69,7 +68,7 @@ public class Task {
         this.statusName = statusName;
     }
 
-    public String getStatusName(){
+    public String getStatusName() {
         return statusName;
     }
 }

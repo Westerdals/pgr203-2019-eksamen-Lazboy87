@@ -1,6 +1,5 @@
 package no.kristiania.Http;
 
-import no.kristiania.Dao.ProjectMemberHttpController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,14 +9,11 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
-import static no.kristiania.Http.HttpMessage.readHeaders;
-
 
 public class HttpServer {
     private static final Logger logger = LoggerFactory.getLogger(HttpServer.class);
     private HttpController defaultController;
     private ServerSocket serverSocket;
-
 
 
     public String fileLocation;
@@ -31,12 +27,9 @@ public class HttpServer {
         controllers.put("/echo", new EchoHttpController());
     }
 
-    public static void main(String[] args) throws IOException {
-        HttpServer httpServer = new HttpServer(8080);
-        httpServer.setFileLocation("src/main/resources");
-        httpServer.start();
 
-    }
+
+
 
     public void start() {
 
@@ -51,11 +44,11 @@ public class HttpServer {
                 HttpServerRequest request = new HttpServerRequest(socket.getInputStream());
 
                 String requestLine = request.getStartLine();
-                logger.debug("Handling request:{}",requestLine);
+                logger.debug("Handling request:{}", requestLine);
                 Map<String, String> headers = request.headers;
                 String body = request.body;
 
-                String requestAction= requestLine.split(" ")[0];
+                String requestAction = requestLine.split(" ")[0];
                 String requestTarget = requestLine.split(" ")[1];
                 int questionPos = requestTarget.indexOf('?');
 
@@ -64,8 +57,7 @@ public class HttpServer {
 
                 Map<String, String> requestParameters = parseRequestParameters(query);
                 controllers.getOrDefault(requestPath, defaultController)
-                        .handle(requestAction,requestPath, requestParameters,body, socket.getOutputStream());
-
+                        .handle(requestAction, requestPath, requestParameters, body, socket.getOutputStream());
 
 
             } catch (IOException e) {
@@ -97,12 +89,13 @@ public class HttpServer {
     public void setFileLocation(String fileLocation) {
         this.fileLocation = fileLocation;
     }
+
     public String getFileLocation() {
         return fileLocation;
     }
 
     public void addController(String path, HttpController controller) {
-        controllers.put(path,controller);
+        controllers.put(path, controller);
     }
 
 }

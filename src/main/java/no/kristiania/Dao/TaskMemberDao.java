@@ -32,42 +32,12 @@ public class TaskMemberDao extends AbstractDao<TaskMember> {
     }
 
     public void insert(TaskMember taskMember) throws SQLException {
-                //checks if object already exist in database before inserting
-                if(this.listAll().contains(taskMember)){
-                    System.out.println("FINNES ALEREDE!");
-                    return;
-                }
+        //checks if object already exist in database before inserting
+        if (this.listAll().contains(taskMember)) {
+            System.out.println("FINNES ALEREDE!");
+            return;
+        }
         insert(taskMember, "insert into taskmembers (member_id,task_id) values (?,?)");
     }
 
-    public TaskMember retrieveTaskID(long id) throws SQLException {
-        try (Connection connection = dataSource.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement("select * from taskmembers where task_id = ?")) {
-                statement.setLong(1, id);
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    if (resultSet.next()) {
-                        return (readObject(resultSet));
-                    } else {
-                        return null;
-                    }
-                }
-            }
-        }
-
-
-    }
-    public TaskMember retrieveMemberId(long id) throws SQLException{
-        try (Connection connection = dataSource.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement("select * from taskmembers where member_id = ?")) {
-                statement.setLong(1, id);
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    if(resultSet.next()) {
-                        return (readObject(resultSet));
-                    } else {
-                        return null;
-                    }
-                }
-            }
-        }
-    }
 }

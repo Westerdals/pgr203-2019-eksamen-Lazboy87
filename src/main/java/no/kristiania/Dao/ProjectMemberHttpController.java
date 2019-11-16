@@ -1,6 +1,7 @@
 package no.kristiania.Dao;
 
 import no.kristiania.Http.HttpController;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
@@ -54,7 +55,6 @@ public class ProjectMemberHttpController implements HttpController {
         }
 
     }
-
 
 
     public String getBody() throws SQLException {

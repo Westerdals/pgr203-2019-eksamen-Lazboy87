@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class StatusDao extends AbstractDao<Status>{
+public class StatusDao extends AbstractDao<Status> {
     public StatusDao(DataSource dataSource) {
         super(dataSource);
     }
@@ -16,7 +16,6 @@ public class StatusDao extends AbstractDao<Status>{
     protected void insertMember(Status status, PreparedStatement statement) throws SQLException {
 
         statement.setString(1, status.getName());
-
 
 
     }
@@ -30,7 +29,6 @@ public class StatusDao extends AbstractDao<Status>{
     }
 
 
-
     public List<Status> listAll() throws SQLException {
         return listAll("select * from status");
     }
@@ -41,12 +39,13 @@ public class StatusDao extends AbstractDao<Status>{
         status.setId((int) id);
         return id;
     }
-    public Status retrieve(long id) throws SQLException{
+
+    public Status retrieve(long id) throws SQLException {
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("select * from status where id = ?")) {
                 statement.setLong(1, id);
                 try (ResultSet resultSet = statement.executeQuery()) {
-                    if(resultSet.next()) {
+                    if (resultSet.next()) {
                         return (readObject(resultSet));
                     } else {
                         return null;

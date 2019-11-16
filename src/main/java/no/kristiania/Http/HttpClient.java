@@ -1,10 +1,8 @@
 package no.kristiania.Http;
 
 import java.io.IOException;
-
 import java.net.Socket;
 import java.util.HashMap;
-import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -35,7 +33,6 @@ public class HttpClient {
         String headerString = headers.entrySet().stream()
                 .map(e -> e.getKey() + ":" + e.getValue())
                 .collect(Collectors.joining("\r\n"));
-
 
 
         socket.getOutputStream().write((HttpMethod + " " + requestTarget + " HTTP/1.1\r\n" +

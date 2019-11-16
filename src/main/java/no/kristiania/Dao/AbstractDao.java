@@ -18,15 +18,15 @@ public abstract class AbstractDao<T> {
     public long insert(T member, String sql1) throws SQLException {
 
 
-        ResultSet rs  = null;
+        ResultSet rs = null;
         int id = 0;
         try (Connection conn = dataSource.getConnection();) {
-            try (PreparedStatement statement = conn.prepareStatement(sql1, PreparedStatement.RETURN_GENERATED_KEYS);){
+            try (PreparedStatement statement = conn.prepareStatement(sql1, PreparedStatement.RETURN_GENERATED_KEYS);) {
                 insertMember(member, statement);
                 int affectedRows = statement.executeUpdate();
-                if(affectedRows == 1){
+                if (affectedRows == 1) {
                     rs = statement.getGeneratedKeys();
-                    if(rs.next()){
+                    if (rs.next()) {
                         id = rs.getInt(1);
                     }
                 }
@@ -47,7 +47,7 @@ public abstract class AbstractDao<T> {
 
                     while (resultSet.next()) {
 
-                      result.add(readObject(resultSet));
+                        result.add(readObject(resultSet));
 
 
                     }

@@ -1,7 +1,6 @@
 package no.kristiania.Dao;
 
 
-
 import java.util.Objects;
 
 public class Status {

@@ -15,7 +15,7 @@ public class TaskManagementServer {
 
 
         Properties properties = new Properties();
-        try(FileReader reader = new FileReader("task-manager.properties")){
+        try (FileReader reader = new FileReader("task-manager.properties")) {
             properties.load(reader);
         }
         dataSource.setUrl(properties.getProperty("dataSource.url"));
@@ -30,8 +30,8 @@ public class TaskManagementServer {
         server.addController("/api/addTaskMember", new AddTaskMemberHttpController(new TaskMemberDao(dataSource), new TaskDao(dataSource), new ProjectMemberDao(dataSource)));
         server.addController("/api/status", new StatusHttpController(new StatusDao(dataSource)));
         server.addController("/api/tasks", new TaskHttpController(new TaskDao(dataSource)));
-        server.addController("/api/changeTaskStatus",new ChangeTaskStatusHttpController(new TaskDao(dataSource)));
-        server.addController("/api/ListTasksMember",new ListTaskMemberHttpController(new TaskDao(dataSource),new ProjectMemberDao(dataSource)));
+        server.addController("/api/changeTaskStatus", new ChangeTaskStatusHttpController(new TaskDao(dataSource)));
+        server.addController("/api/ListTasksMember", new ListTaskMemberHttpController(new TaskDao(dataSource), new ProjectMemberDao(dataSource)));
 
 
         server.start();

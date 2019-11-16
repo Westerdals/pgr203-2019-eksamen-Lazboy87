@@ -4,7 +4,7 @@ package no.kristiania.Http;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class HttpServerRequest extends HttpMessage{
+public class HttpServerRequest extends HttpMessage {
 
 
     public HttpServerRequest(InputStream inputStream) throws IOException {
