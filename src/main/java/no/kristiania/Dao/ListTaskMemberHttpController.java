@@ -75,7 +75,7 @@ public class ListTaskMemberHttpController implements HttpController {
             bod.append("<article>\n" +
                     "<h4>Member: </h4>" +
                     "\n" +
-                    "        <h1> "+ member.get(i).getName() +"</h1>\n" +
+                    "        <h4> "+ member.get(i).getName() +"</h4>\n" +
                     "\n" +
 
                     "\n" +
