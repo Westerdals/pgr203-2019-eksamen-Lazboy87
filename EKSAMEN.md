@@ -34,7 +34,7 @@ Dere skal levere en webserver som skal kunne brukes i nettleseren for å adminis
 
 Funksjonaliteten bør inkludere:
 * [x] Opprett ny prosjektoppgave 
-* [ ] Liste opp prosjektoppgaver, inkludert status og tildelte prosjektmedlemmer
+* [x] Liste opp prosjektoppgaver, inkludert status og tildelte prosjektmedlemmer
 * [x] Tildel oppgave til prosjektmedlemmer
 * [ ] Endre oppgavestatus
 * [ ] Filtrere oppgaver på tilordnet en prosjektmedlem
