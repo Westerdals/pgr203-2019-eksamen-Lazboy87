@@ -60,7 +60,7 @@ public class AddTaskMemberHttpController implements HttpController {
 
     public String getBody() throws SQLException {
 
-        String body = "";
+        String body = "<div></div>";
 
 
         return body;
