@@ -9,9 +9,9 @@
 
 
 
-<h1>Add Task to member</h1>
-<form  action="/api/addTaskMember" method="POST">
-Member:<select name="memberName" id="projectMembersadd"></select> Task: <select name="taskName" id="Taskadd"></select>  <button>Add</button>
+<h1>Change Task Status</h1>
+<form  action="" method="POST">
+Task:<select name="taskName" id="task"></select> Status: <select name="statusName" id="statusadd"></select>  <button>Change Status</button>
 </form>
 
 
@@ -30,22 +30,21 @@ Member:<select name="memberName" id="projectMembersadd"></select> Task: <select 
 
 
 
-    fetch("/api/projectMembers")
-        .then(function(result) {
-            return result.text();
-        }).then(function(text) {
-            document.getElementById("projectMembersadd").innerHTML = text;
-            document.getElementById("projectMembers").innerHTML = text;
-            document.getElementById("projectMembersall").innerHTML = text;
-
-
-        });
-
     fetch("/api/tasks")
         .then(function(result) {
             return result.text();
         }).then(function(text) {
-        document.getElementById("Taskadd").innerHTML = text;
+            document.getElementById("task").innerHTML = text;
+
+
+
+        });
+
+    fetch("/api/status")
+        .then(function(result) {
+            return result.text();
+        }).then(function(text) {
+        document.getElementById("statusadd").innerHTML = text;
 
 
 

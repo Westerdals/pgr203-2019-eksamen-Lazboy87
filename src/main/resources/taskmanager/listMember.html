@@ -33,20 +33,14 @@
         .then(function(result) {
             return result.text();
         }).then(function(text) {
-            document.getElementById("projectMembersadd").innerHTML = text;
+
             document.getElementById("projectMembers").innerHTML = text;
-            document.getElementById("projectMembersall").innerHTML = text;
+
 
 
         });
 
-    fetch("/api/tasks")
-        .then(function(result) {
-            return result.text();
-        }).then(function(text) {
-        document.getElementById("Taskadd").innerHTML = text;
 
-    });
 
 </script>
 </html>
