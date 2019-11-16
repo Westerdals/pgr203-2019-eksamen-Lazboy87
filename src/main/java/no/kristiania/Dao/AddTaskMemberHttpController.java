@@ -7,18 +7,21 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class AddTaskMemberHttpController implements HttpController {
     private TaskMemberDao taskMemberDao;
     private TaskDao taskDao;
+    private ProjectMemberDao projectMemberDao;
 
     private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(AddTaskMemberHttpController.class);
 
-    public AddTaskMemberHttpController(TaskMemberDao taskMemberDao, TaskDao taskDao) {
+    public AddTaskMemberHttpController(TaskMemberDao taskMemberDao, TaskDao taskDao, ProjectMemberDao projectMemberDao) {
         this.taskMemberDao = taskMemberDao;
         this.taskDao = taskDao;
+        this.projectMemberDao = projectMemberDao;
     }
 
 
@@ -65,10 +68,31 @@ public class AddTaskMemberHttpController implements HttpController {
 
         String body = "";
                 StringBuilder bod = new StringBuilder();
+
                 for(int i = 0; i < taskDao.listAll().size(); i++){
 
-                }
+                    String taskId = ""+taskDao.listAll().get(i).getId();
+                    String sql = "select m.* from taskmembers tm join projectmembers m on tm.member_id = m.id where tm.task_id = " + taskId;
+                    String memberName="";
+                    System.out.println(i);
 
+                    List<ProjectMember> projectMembers = projectMemberDao.listAll(sql);
+                    System.out.println("size: " + projectMembers.size());
+                    for(int j = 0; j < projectMembers.size(); j++){
+                       memberName = memberName + projectMembers.get(j).getName() + ", ";
+
+                    }
+
+                    bod.append("<article>\n" +
+                            "        <h1>"+ taskDao.listAll().get(i).getName() +"</h1>\n" +
+                            "\n" +
+                            "        <p>fff</p>\n" +
+                            "\n" +
+                            "        <div>"+ memberName + "</div>\n" +
+                            "\n" +
+                            "    </article>");
+                }
+            body = bod.toString();
 
 
         return body;
