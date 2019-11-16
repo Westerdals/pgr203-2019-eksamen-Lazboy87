@@ -12,8 +12,8 @@
 ## Bygg og test executable jar-fil
  
 1. Hvilken kommando du kjøre?
-     mvn package
-     java -jar target\task-manager-1.0-SNAPSHOT.jar
+     * mvn package
+     * java -jar target\task-manager-1.0-SNAPSHOT.jar
 
    
 2. Hvordan starter du programmet?
