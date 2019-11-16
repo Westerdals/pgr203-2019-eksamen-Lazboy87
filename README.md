@@ -47,7 +47,7 @@
 
 
 ## Designbeskrivelse:
-
+![Design](./doc/diagram.uml)
 ![Design](./doc/diagram.png)
 ![Design](./doc/databasediagram.png)
 
@@ -60,6 +60,12 @@ Og vi lærte mye rundt database strukturering i henhold til koden som skal legge
 
 Vi parrporgrammerte godt og vi fikk til det meste av det vi hadde tiltenkt av implementasjon på oppgaven.
 
+## Link til Parrprogramering:
+
+https://www.youtube.com/watch?v=K5_XOQvgoGw
+
+
+
 
 ### Hva vi skulle ønske vi hadde gjort annerledes
 Vi er klar over at moteodene for oppdatering av noe i databsen kunne vært gjort bedre.
@@ -68,5 +74,9 @@ Vi ønsket og finne en bedre metode for og liste ut de froskjellige oppgavene ti
  Det ble en større utfordring en forventet da vi introduserte en koblingstabell siden 2 av tabellene hadde et mange til mange forhold.
 
 ## Evaluering fra annen gruppe
+Git link:
+https://github.com/Westerdals/pgr203-2019-eksamen-Petlas88
 
 ## Evaluering gitt til annen gruppe
+Git link:
+https://github.com/Westerdals/pgr203-2019-eksamen-Petlas88/issues

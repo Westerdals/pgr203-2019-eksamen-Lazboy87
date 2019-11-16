@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>no.kristiania.Dao.TaskDao</OriginalElement>
+  <nodes>
+    <node x="509.13947590870663" y="323.2865595942519">no.kristiania.Dao.Status</node>
+    <node x="480.0" y="102.0">no.kristiania.Dao.ProjectMemberHttpController</node>
+    <node x="1510.0" y="102.0">no.kristiania.Dao.TaskHttpController</node>
+    <node x="1305.0" y="102.0">no.kristiania.Http.EchoHttpController</node>
+    <node x="894.3601014370248" y="442.20710059171586">no.kristiania.Dao.TaskManagementServer</node>
+    <node x="128.0" y="261.0">no.kristiania.Dao.ProjectMemberDao</node>
+    <node x="1715.0" y="102.0">no.kristiania.Dao.StatusHttpController</node>
+    <node x="332.8461538461539" y="324.49957734573127">no.kristiania.Dao.TaskMember</node>
+    <node x="1587.2195688926458" y="175.73034657650044">no.kristiania.Http.HttpMessage</node>
+    <node x="275.0" y="102.0">no.kristiania.Http.FileHttpController</node>
+    <node x="1016.0" y="102.0">no.kristiania.Dao.ChangeTaskStatusHttpController</node>
+    <node x="932.75" y="0.0">no.kristiania.Http.HttpController</node>
+    <node x="1468.1242603550297" y="344.11749788672864">no.kristiania.Http.HttpServer</node>
+    <node x="489.0" y="261.0">no.kristiania.Dao.StatusDao</node>
+    <node x="748.0" y="102.0">no.kristiania.Dao.AddTaskMemberHttpController</node>
+    <node x="319.0" y="261.0">no.kristiania.Dao.TaskMemberDao</node>
+    <node x="131.30684699915486" y="329.40405748098055">no.kristiania.Dao.ProjectMember</node>
+    <node x="0.0" y="261.0">no.kristiania.Dao.TaskDao</node>
+    <node x="235.75" y="179.0">no.kristiania.Dao.AbstractDao</node>
+    <node x="1666.9695688926458" y="257.73034657650044">no.kristiania.Http.HttpServerRequest</node>
+    <node x="6.1132713440405695" y="324.92138630600175">no.kristiania.Dao.Task</node>
+    <node x="1692.0456466610315" y="329.82586644125115">no.kristiania.Http.HttpClient</node>
+    <node x="1450.5257819103972" y="261.0">no.kristiania.Http.HttpClientResponse</node>
+    <node x="0.0" y="102.0">no.kristiania.Dao.ListTaskMemberHttpController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="no.kristiania.Dao.ListTaskMemberHttpController" target="no.kristiania.Http.HttpController">
+      <point x="0.0" y="-16.0" />
+      <point x="127.5" y="52.0" />
+      <point x="942.5625" y="52.0" />
+      <point x="-68.6875" y="16.0" />
+    </edge>
+    <edge source="no.kristiania.Dao.TaskMemberDao" target="no.kristiania.Dao.AbstractDao">
+      <point x="0.0" y="-16.0" />
+      <point x="394.0" y="241.0" />
+      <point x="320.75" y="241.0" />
+      <point x="17.0" y="16.0" />
+    </edge>
+    <edge source="no.kristiania.Dao.AddTaskMemberHttpController" target="no.kristiania.Http.HttpController">
+      <point x="0.0" y="-16.0" />
+      <point x="872.0" y="82.0" />
+      <point x="1001.4375" y="82.0" />
+      <point x="-9.8125" y="16.0" />
+    </edge>
+    <edge source="no.kristiania.Http.HttpClientResponse" target="no.kristiania.Http.HttpMessage">
+      <point x="0.0" y="-16.0" />
+      <point x="1543.0257819103972" y="236.0" />
+      <point x="1621.2195688926458" y="232.73034657650044" />
+      <point x="-34.0" y="16.0" />
+    </edge>
+    <edge source="no.kristiania.Dao.ChangeTaskStatusHttpController" target="no.kristiania.Http.HttpController">
+      <point x="0.0" y="-16.0" />
+      <point x="1150.5" y="82.0" />
+      <point x="1021.0625" y="82.0" />
+      <point x="9.8125" y="16.0" />
+    </edge>
+    <edge source="no.kristiania.Http.HttpServerRequest" target="no.kristiania.Http.HttpMessage">
+      <point x="0.0" y="-16.0" />
+      <point x="1755.9695688926458" y="232.73034657650044" />
+      <point x="1689.2195688926458" y="232.73034657650044" />
+      <point x="34.0" y="16.0" />
+    </edge>
+    <edge source="no.kristiania.Http.EchoHttpController" target="no.kristiania.Http.HttpController">
+      <point x="0.0" y="-16.0" />
+      <point x="1397.5" y="72.0" />
+      <point x="1040.6875" y="72.0" />
+      <point x="29.4375" y="16.0" />
+    </edge>
+    <edge source="no.kristiania.Dao.StatusHttpController" target="no.kristiania.Http.HttpController">
+      <point x="0.0" y="-16.0" />
+      <point x="1814.5" y="52.0" />
+      <point x="1079.9375" y="52.0" />
+      <point x="68.6875" y="16.0" />
+    </edge>
+    <edge source="no.kristiania.Dao.TaskHttpController" target="no.kristiania.Http.HttpController">
+      <point x="0.0" y="-16.0" />
+      <point x="1602.5" y="62.0" />
+      <point x="1060.3125" y="62.0" />
+      <point x="49.0625" y="16.0" />
+    </edge>
+    <edge source="no.kristiania.Dao.StatusDao" target="no.kristiania.Dao.AbstractDao">
+      <point x="0.0" y="-16.0" />
+      <point x="550.0" y="231.0" />
+      <point x="354.75" y="231.0" />
+      <point x="51.0" y="16.0" />
+    </edge>
+    <edge source="no.kristiania.Http.FileHttpController" target="no.kristiania.Http.HttpController">
+      <point x="0.0" y="-16.0" />
+      <point x="367.5" y="62.0" />
+      <point x="962.1875" y="62.0" />
+      <point x="-49.0625" y="16.0" />
+    </edge>
+    <edge source="no.kristiania.Dao.TaskDao" target="no.kristiania.Dao.AbstractDao">
+      <point x="0.0" y="-16.0" />
+      <point x="54.0" y="231.0" />
+      <point x="252.75" y="231.0" />
+      <point x="-51.0" y="16.0" />
+    </edge>
+    <edge source="no.kristiania.Dao.ProjectMemberHttpController" target="no.kristiania.Http.HttpController">
+      <point x="0.0" y="-16.0" />
+      <point x="604.0" y="72.0" />
+      <point x="981.8125" y="72.0" />
+      <point x="-29.4375" y="16.0" />
+    </edge>
+    <edge source="no.kristiania.Dao.ProjectMemberDao" target="no.kristiania.Dao.AbstractDao">
+      <point x="0.0" y="-16.0" />
+      <point x="213.5" y="241.0" />
+      <point x="286.75" y="241.0" />
+      <point x="-17.0" y="16.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6116856256463289" x="956.9999999999999" y="185.0" />
+  <SelectedNodes>
+    <node>no.kristiania.Dao.TaskManagementServer</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
