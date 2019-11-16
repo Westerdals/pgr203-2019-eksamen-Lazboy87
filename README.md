@@ -47,12 +47,12 @@
 
 
 ## Designbeskrivelse:
-# LInk til uml diagram:
+#### LInk til uml diagram:
 ![Design](./doc/diagram.uml)
 
-# Data diagram Klasser:
+#### Data diagram Klasser:
 ![Design](./doc/diagram.png)
-# Data diagram Database:
+#### Data diagram Database:
 ![Design](./doc/databasediagram.png)
 
 
