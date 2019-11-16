@@ -9,7 +9,7 @@
 
 
 
-### Bygg og test executable jar-fil
+## Bygg og test executable jar-fil
  
 1. Hvilken kommando du kjøre?
      mvn package
@@ -46,14 +46,14 @@
 ![Design](./doc/indexshowcase.png)
 
 
-##Designbeskrivelse:
+## Designbeskrivelse:
 
 ![Design](./doc/diagram.png)
 ![Design](./doc/databasediagram.png)
 
 
 
-##Egenevaluering:
+## Egenevaluering:
 
 Vi lærte en del nye ting om httpserver mot implementajson rundt database. 
 Og vi lærte mye rundt database strukturering i henhold til koden som skal legge inn og lese fra databasen.
