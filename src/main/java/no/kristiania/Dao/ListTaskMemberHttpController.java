@@ -9,14 +9,14 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-public class AddTaskMemberHttpController implements HttpController {
+public class ListTaskMemberHttpController implements HttpController {
     private TaskMemberDao taskMemberDao;
     private TaskDao taskDao;
     private ProjectMemberDao projectMemberDao;
 
     private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(ListTaskMemberHttpController.class);
 
-    public AddTaskMemberHttpController(TaskMemberDao taskMemberDao, TaskDao taskDao, ProjectMemberDao projectMemberDao) {
+    public ListTaskMemberHttpController( TaskDao taskDao, ProjectMemberDao projectMemberDao) {
         this.taskMemberDao = taskMemberDao;
         this.taskDao = taskDao;
         this.projectMemberDao = projectMemberDao;
@@ -27,12 +27,6 @@ public class AddTaskMemberHttpController implements HttpController {
     public void handle(String requestAction, String requestPath, Map<String, String> requestParameters, String requestBody, OutputStream outputStream) throws IOException {
         try {
             if (requestAction.equalsIgnoreCase("POST")) {
-                requestParameters = HttpServer.parseRequestParameters(requestBody);
-                TaskMember taskMember = new TaskMember();
-                taskMember.setMemberId(Long.parseLong(requestParameters.get("memberName")));
-                taskMember.setTaskId(Long.parseLong(requestParameters.get("taskName")));
-
-                taskMemberDao.insert(taskMember);
 
 
                 return;
@@ -65,39 +59,39 @@ public class AddTaskMemberHttpController implements HttpController {
     public String getBody() throws SQLException {
 
         String body = "";
-                StringBuilder bod = new StringBuilder();
+        StringBuilder bod = new StringBuilder();
 
         List<Task> tasks = taskDao.listAll();
         for(int i = 0; i < tasks.size(); i++){
 
-                    String taskId = ""+ tasks.get(i).getId();
-                    String sql = "select m.* from taskmembers tm join projectmembers m on tm.member_id = m.id where tm.task_id = " + taskId;
-                    String memberName="";
-                    System.out.println(i);
+            String taskId = ""+ tasks.get(i).getId();
+            String sql = "select m.* from taskmembers tm join projectmembers m on tm.member_id = m.id where tm.task_id = " + taskId;
+            String memberName="";
+            System.out.println(i);
 
-                    List<ProjectMember> projectMembers = projectMemberDao.listAll(sql);
-                    System.out.println("size: " + projectMembers.size());
-                    for(int j = 0; j < projectMembers.size(); j++){
-                       memberName = memberName + projectMembers.get(j).getName() + ", ";
+            List<ProjectMember> projectMembers = projectMemberDao.listAll(sql);
+            System.out.println("size: " + projectMembers.size());
+            for(int j = 0; j < projectMembers.size(); j++){
+                memberName = memberName + projectMembers.get(j).getName() + ", ";
 
-                    }
+            }
 
-                    bod.append("<article>\n" +
-                            "        <h1>"+ tasks.get(i).getName() +"</h1>\n" +
-                            "\n" +
-                            "        <p>"+ tasks.get(i).getStatusName() + "</p>\n" +
-                            "\n" +
-                            "        <div>"+ memberName + "</div>\n" +
-                            "\n" +
-                            "    </article>");
-                }
-            body = bod.toString();
+            bod.append("<article>\n" +
+                    "        <h1>"+ tasks.get(i).getName() +"</h1>\n" +
+                    "\n" +
+                    "        <p>"+ tasks.get(i).getStatusName() + "</p>\n" +
+                    "\n" +
+                    "        <div>"+ memberName + "</div>\n" +
+                    "\n" +
+                    "    </article>");
+        }
+        body = bod.toString();
 
 
         return body;
     }
 
-    }
+}
 
 
 

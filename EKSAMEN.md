@@ -36,7 +36,7 @@ Funksjonaliteten bør inkludere:
 * [x] Opprett ny prosjektoppgave 
 * [x] Liste opp prosjektoppgaver, inkludert status og tildelte prosjektmedlemmer
 * [x] Tildel oppgave til prosjektmedlemmer
-* [ ] Endre oppgavestatus
+* [x] Endre oppgavestatus
 * [ ] Filtrere oppgaver på tilordnet en prosjektmedlem
 * [x] Legge til nye prosjektmedlemmer
 * [x] Legge til nye status-kategorier
@@ -155,7 +155,7 @@ body {
 * [x] Avansert datamodell (mer enn 3 tabeller)
 * [ ] Avansert funksjonalitet (redigering av prosjektmedlemmer, statuskategorier, prosjekter)
 * [ ] Implementasjon av cookies for å konstruere sesjoner
-* [ ] UML diagram som dokumenterer datamodell og/eller arkitektur (presentert i README.md)
+* [x] UML diagram som dokumenterer datamodell og/eller arkitektur (presentert i README.md)
 * [ ] Rammeverk rundt Http-håndtering (en god HttpMessage class med HttpRequest og HttpResponse subtyper) som gjenspeiler RFC7230
 * [ ] Korrekt håndtering av norske tegn i HTTP
 * [ ] God bruk av DAO-pattern
