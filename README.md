@@ -42,21 +42,28 @@
 * Filtrere oppgaver på tilordnet en prosjektmedlem
 5. Man kan enkelt velge disse ved trykk på knappene og etter oppretting av nye objekter i databasen,
  returnerer man manuelt til hovedsiden via link.
-
+ 
+![Design](./doc/indexshowcase.png)
 ##Designbeskrivelse:
 
 ![Design](./doc/diagram.png)
+![Design](./doc/databasediagram.png)
+
 
 
 ##Egenevaluering:
 
 Vi lærte en del nye ting om httpserver mot implementajson rundt database. 
-Og vi lærte mye rundt database strukturering i henhold til koden som skal legge inn og lese fra
+Og vi lærte mye rundt database strukturering i henhold til koden som skal legge inn og lese fra databasen.
 
 Vi parrporgrammerte godt og vi fikk til det meste av det vi hadde tiltenkt av implementasjon på oppgaven.
 
 
 ### Hva vi skulle ønske vi hadde gjort annerledes
+Vi er klar over at moteodene for oppdatering av noe i databsen kunne vært gjort bedre.
+Vi ønsket og finne en bedre metode for og liste ut de froskjellige oppgavene til medlemmer og medlemmer til oppgavene sli at ikke databasen kalles
+ ved hver spørring igjennom løkken til metodene i geetbody() i ListTaskMemberHttpController og AddTaskMemberHttpController. 
+ Det ble en større utfordring en forventet da vi introduserte en koblingstabell siden 2 av tabellene hadde et mange til mange forhold.
 
 ## Evaluering fra annen gruppe
 
