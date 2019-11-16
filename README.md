@@ -1,40 +1,60 @@
-# PG203 Mappeinnlevering for gruppe <wiseflow gruppenummer>
+# PG203 Mappeinnlevering for gruppe 14
 
 [![Build Status](https://travis-ci.com/Westerdals/pgr203-2019-eksamen-Lazboy87.svg?token=u5uiMCxAwytqi2hpiwkt&branch=master)](https://travis-ci.com/Westerdals/pgr203-2019-eksamen-Lazboy87)
 
 
-*Dette er en mal som det anbefales at dere følger for `README.md`-filen til hovedinnleveringen i PGR203* 
 
-## Hvordan kjøre dette programmet
+
+## Hvordan kjører dette programmet
+
+
 
 ### Bygg og test executable jar-fil
+ 
+1. Hvilken kommando du kjøre?
+     mvn package
+     java -jar target\task-manager-1.0-SNAPSHOT.jar
 
-1. Hvilken kommando skal man kjøre?
-2. Hvordan skal konfigurasjonsfilen opprettes?
-3. Hvordan startet du programmet?
+   
+2. Hvordan starter du programmet?
+   før man begynner må man lage en task-manager.properties fil som inneholder:
+   
+   dataSource.username = --------set inn ditt brukernavn
+   dataSource.password =  --------set inn ditt passord
+   dataSource.url = --------set inn inn din database URL
+   
+   java -jar target\task-manager-1.0-SNAPSHOT.jar
+   gå inn på: http://localhost:8080/ i nettleser.
 
-### Funksjonalitet
+## Funksjonalitet:
 
-1. Skriv
-2. Et
-3. Kort
-4. Eksempel
-5. På
-6. Bruk
-7. Av
-8. Programmet
+1. Start Jar filen
+2. Gå inn på :http://localhost:8080/
+3. Velg hva du ønsker og gjøre ut i fra sidens funksjoner.
+4. Sidens Funskjoner inkluderer:
+* Legg til Prosjekt Medlem.
+* Legg til Status.
+* Legg til Oppgave.
+* Legg oppgave til Medlem.
+* Forandre status på oppgave.
+* Liste ut alle Prosjktmedlemmer.
+* Liste opp prosjektoppgaver, inkludert status og tildelte prosjektmedlemmer
+* Filtrere oppgaver på tilordnet en prosjektmedlem
+5. Man kan enkelt velge disse ved trykk på knappene og etter oppretting av nye objekter i databasen,
+ returnerer man manuelt til hovedsiden via link.
 
-## Designbeskrivelse
+##Designbeskrivelse:
 
-Her kan dere inkludere et diagram av datamodellen og av de viktigste klassene i programmet.
+![Design](./doc/diagram.png)
 
-Beskrivelse av hvordan en habil ny utvikler som ser prosjektet for første gang bør forholde seg til koden deres.
 
-## Egenevaluering
+##Egenevaluering:
 
-### Hva vi lærte underveis
+Vi lærte en del nye ting om httpserver mot implementajson rundt database. 
+Og vi lærte mye rundt database strukturering i henhold til koden som skal legge inn og lese fra
 
-### Hva vi fikk til bra i koden vår
+Vi parrporgrammerte godt og vi fikk til det meste av det vi hadde tiltenkt av implementasjon på oppgaven.
+
 
 ### Hva vi skulle ønske vi hadde gjort annerledes
 
