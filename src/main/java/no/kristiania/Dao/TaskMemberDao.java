@@ -32,6 +32,11 @@ public class TaskMemberDao extends AbstractDao<TaskMember> {
     }
 
     public void insert(TaskMember taskMember) throws SQLException {
+                //checks if object already exist in database before inserting
+                if(this.listAll().contains(taskMember)){
+                    System.out.println("FINNSE ALEREDE!");
+                    return;
+                }
         insert(taskMember, "insert into taskmembers (member_id,task_id) values (?,?)");
     }
 

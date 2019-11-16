@@ -10,14 +10,12 @@ import java.util.List;
 import java.util.Map;
 
 public class ListTaskMemberHttpController implements HttpController {
-    private TaskMemberDao taskMemberDao;
     private TaskDao taskDao;
     private ProjectMemberDao projectMemberDao;
 
     private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(ListTaskMemberHttpController.class);
 
     public ListTaskMemberHttpController( TaskDao taskDao, ProjectMemberDao projectMemberDao) {
-        this.taskMemberDao = taskMemberDao;
         this.taskDao = taskDao;
         this.projectMemberDao = projectMemberDao;
     }
@@ -61,27 +59,29 @@ public class ListTaskMemberHttpController implements HttpController {
         String body = "";
         StringBuilder bod = new StringBuilder();
 
-        List<Task> tasks = taskDao.listAll();
-        for(int i = 0; i < tasks.size(); i++){
+        List<ProjectMember> member = projectMemberDao.listAll();
+        for(int i = 0; i < member.size(); i++){
 
-            String taskId = ""+ tasks.get(i).getId();
-            String sql = "select m.* from taskmembers tm join projectmembers m on tm.member_id = m.id where tm.task_id = " + taskId;
-            String memberName="";
-            System.out.println(i);
+            String memberId = ""+ member.get(i).getId();
+            String sql = "select t.*, null n from taskmembers tm join tasks t on tm.task_id = t.id where tm.member_id = " + memberId;
+            String taskNames="";
 
-            List<ProjectMember> projectMembers = projectMemberDao.listAll(sql);
-            System.out.println("size: " + projectMembers.size());
-            for(int j = 0; j < projectMembers.size(); j++){
-                memberName = memberName + projectMembers.get(j).getName() + ", ";
+            List<Task> tasks = taskDao.listAll(sql);
 
+            for(int j = 0; j < tasks.size(); j++){
+                taskNames = taskNames +tasks.get(j).getName() + ", ";
             }
-
+            System.out.println("i: " + i);
             bod.append("<article>\n" +
-                    "        <h1>"+ tasks.get(i).getName() +"</h1>\n" +
+                    "<h4>Member: </h4>" +
                     "\n" +
-                    "        <p>"+ tasks.get(i).getStatusName() + "</p>\n" +
+                    "        <h1> "+ member.get(i).getName() +"</h1>\n" +
                     "\n" +
-                    "        <div>"+ memberName + "</div>\n" +
+
+                    "\n" +
+                            "<h4>Tasks:</h4>" +
+                    "\n" +
+                    "        <div>"+ taskNames + "</div>\n" +
                     "\n" +
                     "    </article>");
         }

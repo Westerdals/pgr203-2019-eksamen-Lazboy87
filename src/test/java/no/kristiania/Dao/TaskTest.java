@@ -34,25 +34,7 @@ public class TaskTest {
     }
 
 
-   /* @Test
-    void shouldFindTasknameandid() throws SQLException {
-        Task task = new Task();
-        task.setName("Finish Exam");
 
-
-        TaskDao dao = new TaskDao(jdbcDataSource);
-
-        dao.insert(task);
-
-
-
-        System.out.println(dao.listAll());
-        long id = dao.insert(task);
-
-
-        assertThat(dao.retrieve(id)).isEqualToComparingFieldByField(task);
-    }
-*/
     @Test
     void shouldFindTaskinDB() throws SQLException {
         Task task = new  Task();

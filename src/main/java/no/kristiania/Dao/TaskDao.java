@@ -28,6 +28,7 @@ public class TaskDao extends AbstractDao<Task> {
     protected Task readObject(ResultSet resultSet) throws SQLException {
 
         Task task = new Task();
+
         task.setStatusName(resultSet.getString(4));
         task.setStatusId(resultSet.getInt(3));
         task.setName(resultSet.getString(2));
@@ -41,6 +42,7 @@ public class TaskDao extends AbstractDao<Task> {
         return listAll("select t.id, t.task_name, t.status_id, s.status_cat\n" +
                 "from tasks t left join status s on t.status_id = s.id");
     }
+
 
 
     public long insert(Task task) throws SQLException {
