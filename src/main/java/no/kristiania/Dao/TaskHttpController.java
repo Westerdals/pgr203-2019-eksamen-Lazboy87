@@ -25,6 +25,7 @@ public class TaskHttpController implements HttpController {
             if (requestAction.equalsIgnoreCase("POST")) {
                 requestParameters = HttpServer.parseRequestParameters(requestBody);
                 Task task = new Task();
+
                 task.setName(requestParameters.get("taskName"));
 
 
