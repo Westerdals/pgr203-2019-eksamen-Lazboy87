@@ -8,7 +8,7 @@ public class Task {
 
     }
     private long id;
-    private long statusId= 1;
+    private long statusId;
     private String statusName;
     private String name;
 

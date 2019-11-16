@@ -16,6 +16,8 @@ public abstract class AbstractDao<T> {
     }
 
     public long insert(T member, String sql1) throws SQLException {
+
+
         ResultSet rs  = null;
         int id = 0;
         try (Connection conn = dataSource.getConnection();) {

@@ -23,15 +23,13 @@ public class ChangeTaskStatusHttpController implements HttpController { private 
         try {
             if (requestAction.equalsIgnoreCase("POST")) {
                 requestParameters = HttpServer.parseRequestParameters(requestBody);
-                Task task = new Task();
 
-                task.setName(requestParameters.get("taskName"));
-                task.setStatusId(Long.parseLong("statusName"));
+                Long taskId = Long.parseLong(requestParameters.get("taskName"));
+                Long statusId = Long.parseLong(requestParameters.get("statusName"));
+
+                taskDao.updateStatus(statusId, taskId);
 
 
-
-
-                taskDao.insert(task);
                 return;
 
             }
@@ -71,4 +69,4 @@ public class ChangeTaskStatusHttpController implements HttpController { private 
 
 
 
-}
+
