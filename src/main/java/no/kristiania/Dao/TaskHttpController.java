@@ -26,7 +26,7 @@ public class TaskHttpController implements HttpController {
                 requestParameters = HttpServer.parseRequestParameters(requestBody);
                 Task task = new Task();
                 task.setName(requestParameters.get("taskName"));
-                task.setStatusId(Long.parseLong(requestParameters.get("statusName")));
+
 
 
                 taskDao.insert(task);
