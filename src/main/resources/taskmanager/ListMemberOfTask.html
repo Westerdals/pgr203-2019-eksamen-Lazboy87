@@ -9,17 +9,26 @@
 
 
 
-<h1>List Member of Task</h1>
-<form  action="/api/addTaskMember" method="POST">
-    Task: <select name="taskName" id="Taskadd"></select>  <button>Add</button>
-</form>
+<h1>List Tasks status and members</h1>
+<div id="container" class="container">
 
+    <article>
+        <h1>Oppgavetittel</h1>
+
+        <p>status</p>
+
+        <div>members</div>
+
+    </article>
+
+
+
+</div>
 
 
 <div>
     <a href="index.html">Return to front page</a>
 </div>
-
 
 
 
@@ -31,14 +40,15 @@
 
 
 
-    fetch("/api/tasks")
+    fetch("/api/addTaskMember")
         .then(function(result) {
             return result.text();
         }).then(function(text) {
-        document.getElementById("Taskadd").innerHTML = text;
+        document.getElementById("container").innerHTML = text;
 
 
 
     });
+
 </script>
 </html>

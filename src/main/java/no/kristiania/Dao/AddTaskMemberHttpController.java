@@ -12,12 +12,15 @@ import java.util.stream.Collectors;
 
 public class AddTaskMemberHttpController implements HttpController {
     private TaskMemberDao taskMemberDao;
+    private TaskDao taskDao;
 
     private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(AddTaskMemberHttpController.class);
 
-    public AddTaskMemberHttpController(TaskMemberDao taskMemberDao) {
+    public AddTaskMemberHttpController(TaskMemberDao taskMemberDao, TaskDao taskDao) {
         this.taskMemberDao = taskMemberDao;
+        this.taskDao = taskDao;
     }
+
 
     @Override
     public void handle(String requestAction, String requestPath, Map<String, String> requestParameters, String requestBody, OutputStream outputStream) throws IOException {
@@ -60,7 +63,12 @@ public class AddTaskMemberHttpController implements HttpController {
 
     public String getBody() throws SQLException {
 
-        String body = "<div></div>";
+        String body = "";
+                StringBuilder bod = new StringBuilder();
+                for(int i = 0; i < taskDao.listAll().size(); i++){
+
+                }
+                taskMemberDao.listAll()
 
 
         return body;
