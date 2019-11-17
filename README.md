@@ -1,4 +1,4 @@
-# PG203 Mappeinnlevering for gruppe 14
+# PG203 Mappeinnlevering for gruppe 14 Lasse hovden og Fredrik Holanger
 
 [![Build Status](https://travis-ci.com/Westerdals/pgr203-2019-eksamen-Lazboy87.svg?token=u5uiMCxAwytqi2hpiwkt&branch=master)](https://travis-ci.com/Westerdals/pgr203-2019-eksamen-Lazboy87)
 
@@ -29,9 +29,13 @@
 
 ## Funksjonalitet:
 
+
 1. Start Jar filen
+
 2. Gå inn på :http://localhost:8080/
+
 3. Velg hva du ønsker og gjøre ut i fra sidens funksjoner.
+
 4. Sidens Funskjoner inkluderer:
 * Legg til Prosjekt Medlem.
 * Legg til Status.
@@ -40,9 +44,10 @@
 * Forandre status på oppgave.
 * Liste ut alle Prosjktmedlemmer.
 * Liste opp prosjektoppgaver, inkludert status og tildelte prosjektmedlemmer
-* Filtrere oppgaver på tilordnet en prosjektmedlem
+* Filtrere oppgaver på tilordnet en prosjektmedlem.
+
 5. Man kan enkelt velge disse ved trykk på knappene og etter oppretting av nye objekter i databasen,
- returnerer man manuelt til hovedsiden via link.
+ etter et nytt object har blitt lagt til returnerer man til hovedside.
  
 ![Design](./doc/indexshowcase.png)
 
