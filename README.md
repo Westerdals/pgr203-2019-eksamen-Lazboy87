@@ -23,8 +23,8 @@
    * dataSource.password =  --------set inn ditt passord
    * dataSource.url = --------set inn inn din database URL
    
-   java -jar target\task-manager-1.0-SNAPSHOT.jar
-   gå inn på: http://localhost:8080/ i nettleser.
+   *java -jar target\task-manager-1.0-SNAPSHOT.jar
+   *gå inn på: http://localhost:8080/ i nettleser.
 
 ## Funksjonalitet:
 
@@ -68,6 +68,10 @@ Vi parrporgrammerte godt og vi fikk til det meste av det vi hadde tiltenkt av im
 
 https://www.youtube.com/watch?v=K5_XOQvgoGw
 
+## Link Til Github:
+
+https://github.com/Westerdals/pgr203-2019-eksamen-Lazboy87
+
 
 
 
@@ -79,7 +83,7 @@ Vi ønsket og finne en bedre metode for og liste ut de froskjellige oppgavene ti
 
 ## Evaluering fra annen gruppe
 Git link:
-https://github.com/Westerdals/pgr203-2019-eksamen-Petlas88
+https://github.com/Westerdals/pgr203-2019-eksamen-Lazboy87/issues
 
 ## Evaluering gitt til annen gruppe
 Git link:
