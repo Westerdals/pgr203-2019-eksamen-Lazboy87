@@ -1,4 +1,4 @@
-# PG203 Mappeinnlevering for gruppe 14 Lasse hovden og Fredrik Holanger
+# PG203 Mappeinnlevering for <gruppe 14> Lasse hovden og Fredrik Holanger
 
 [![Build Status](https://travis-ci.com/Westerdals/pgr203-2019-eksamen-Lazboy87.svg?token=u5uiMCxAwytqi2hpiwkt&branch=master)](https://travis-ci.com/Westerdals/pgr203-2019-eksamen-Lazboy87)
 
