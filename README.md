@@ -17,7 +17,7 @@
 
    
 2. Hvordan starter du programmet?
-   før man begynner må man lage en task-manager.properties fil som inneholder:
+   ##### !Før man begynner må man lage en {task-manager.properties} fil som inneholder:
    
    * dataSource.username = --------set inn ditt brukernavn
    * dataSource.password =  --------set inn ditt passord
