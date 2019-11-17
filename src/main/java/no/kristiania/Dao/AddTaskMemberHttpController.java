@@ -86,13 +86,17 @@ public class AddTaskMemberHttpController implements HttpController {
                 memberName = memberName + projectMembers.get(j).getName() + ", ";
 
             }
+            String status = tasks.get(i).getStatusName();
+            if(status == null){
+                status = "No status";
+            }
 
             bod.append("<article>\n" +
                     "        <h1>" + tasks.get(i).getName() + "</h1>\n" +
                     "\n" +
                     "        <h4> Status: </h4>\n" +
                     "\n" +
-                    "        <p>" + tasks.get(i).getStatusName() + "</p>\n" +
+                    "        <p>" + status + "</p>\n" +
                     "\n" +
                     "        <h4> Members: </h4>\n" +
                     "\n" +
