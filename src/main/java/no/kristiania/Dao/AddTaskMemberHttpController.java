@@ -34,6 +34,10 @@ public class AddTaskMemberHttpController implements HttpController {
                 taskMember.setTaskId(Long.parseLong(requestParameters.get("taskName")));
 
                 taskMemberDao.insert(taskMember);
+                outputStream.write(("HTTP/1.1 302 Redirect\r\n"+
+                        "Location: http://localhost:8080/\r\n"+
+                        "Connection:close\r\n"+
+                        "\r\n").getBytes());
 
 
                 return;

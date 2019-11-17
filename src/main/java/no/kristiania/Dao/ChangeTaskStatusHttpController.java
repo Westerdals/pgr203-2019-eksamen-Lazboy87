@@ -29,6 +29,10 @@ public class ChangeTaskStatusHttpController implements HttpController {
                 Long statusId = Long.parseLong(requestParameters.get("statusName"));
 
                 taskDao.updateStatus(statusId, taskId);
+                outputStream.write(("HTTP/1.1 302 Redirect\r\n"+
+                        "Location: http://localhost:8080/\r\n"+
+                        "Connection:close\r\n"+
+                        "\r\n").getBytes());
 
 
                 return;

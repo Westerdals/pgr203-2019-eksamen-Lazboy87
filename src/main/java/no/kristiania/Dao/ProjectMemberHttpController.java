@@ -12,6 +12,8 @@ import no.kristiania.Http.HttpServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.stream.Location;
+
 public class ProjectMemberHttpController implements HttpController {
     private ProjectMemberDao memberDao;
     private static final Logger Logger = LoggerFactory.getLogger(ProjectMemberHttpController.class);
@@ -31,6 +33,10 @@ public class ProjectMemberHttpController implements HttpController {
                 member.setMail(requestParameters.get("mail"));
 
                 memberDao.insert(member);
+                outputStream.write(("HTTP/1.1 302 Redirect\r\n"+
+                        "Location: http://localhost:8080/\r\n"+
+                        "Connection:close\r\n"+
+                        "\r\n").getBytes());
                 return;
 
             }
