@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -26,7 +27,7 @@ public class TaskHttpController implements HttpController {
                 requestParameters = HttpServer.parseRequestParameters(requestBody);
                 Task task = new Task();
 
-                task.setName(requestParameters.get("taskName"));
+                task.setName(URLDecoder.decode(requestParameters.get("taskName")));
                 outputStream.write(("HTTP/1.1 302 Redirect\r\n"+
                         "Location: http://localhost:8080/\r\n"+
                         "Connection:close\r\n"+

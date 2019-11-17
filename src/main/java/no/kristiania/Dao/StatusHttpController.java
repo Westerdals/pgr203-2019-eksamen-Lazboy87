@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -25,7 +26,7 @@ public class StatusHttpController implements HttpController {
             if (requestAction.equalsIgnoreCase("POST")) {
                 requestParameters = HttpServer.parseRequestParameters(requestBody);
                 Status status = new Status();
-                status.setName(requestParameters.get("statusName"));
+                status.setName(URLDecoder.decode(requestParameters.get("statusName")));
 
 
                 statusDao.insert(status);

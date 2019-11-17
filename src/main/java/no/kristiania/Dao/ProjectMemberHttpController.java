@@ -4,6 +4,7 @@ import no.kristiania.Http.HttpController;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -12,7 +13,7 @@ import no.kristiania.Http.HttpServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.stream.Location;
+
 
 public class ProjectMemberHttpController implements HttpController {
     private ProjectMemberDao memberDao;
@@ -29,9 +30,8 @@ public class ProjectMemberHttpController implements HttpController {
             if (requestAction.equalsIgnoreCase("POST")) {
                 requestParameters = HttpServer.parseRequestParameters(requestBody);
                 ProjectMember member = new ProjectMember();
-                member.setName(requestParameters.get("memberName"));
-                member.setMail(requestParameters.get("mail"));
-
+                member.setName(URLDecoder.decode(requestParameters.get("memberName")));
+                member.setMail(URLDecoder.decode(requestParameters.get("mail")));
                 memberDao.insert(member);
                 outputStream.write(("HTTP/1.1 302 Redirect\r\n"+
                         "Location: http://localhost:8080/\r\n"+
