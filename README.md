@@ -88,6 +88,7 @@ https://github.com/Westerdals/pgr203-2019-eksamen-Lazboy87
  * Det ble en større utfordring en forventet da vi introduserte en koblingstabell siden 2 av tabellene hadde et mange til mange forhold.
 
 ## Evaluering fra annen gruppe
+* Brorpart ligger i clossed issues.
 Git link:
 https://github.com/Westerdals/pgr203-2019-eksamen-Lazboy87/issues
 
