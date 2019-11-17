@@ -23,8 +23,8 @@
    * dataSource.password =  --------set inn ditt passord
    * dataSource.url = --------set inn inn din database URL
    
-   *java -jar target\task-manager-1.0-SNAPSHOT.jar
-   *gå inn på: http://localhost:8080/ i nettleser.
+   * java -jar target\task-manager-1.0-SNAPSHOT.jar
+   * gå inn på: http://localhost:8080/ i nettleser.
 
 ## Funksjonalitet:
 
